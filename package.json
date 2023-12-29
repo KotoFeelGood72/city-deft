@@ -1,0 +1,29 @@
+{
+  "name": "city-deft",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt --watch --max-old-space-size=4096",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^5.0.32",
+    "@iconify/vue2": "^2.1.0",
+    "@nuxt/image": "0.7.1",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/style-resources": "^1.2.2",
+    "core-js": "^3.25.3",
+    "nuxt": "^2.15.8",
+    "sass": "^1.69.5",
+    "sass-loader": "10",
+    "swiper": "^5.2.0",
+    "vue": "^2.7.10",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10",
+    "vue-toastification": "^1.7.14",
+    "vuejs-paginate": "^2.1.0"
+  }
+}
