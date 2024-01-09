@@ -18,8 +18,6 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: yarn install
-      - name: Build the app
-        run: yarn build
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v2.2.2
         with:
@@ -28,5 +26,7 @@ jobs:
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "./"
           target: "/home/admin/web/citydeft.com/public_html/"
+      - name: Build the app on the server
+        run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} "cd /home/admin/web/citydeft.com/public_html/ && yarn install && yarn build"
       - name: Start the app on the server
         run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} "cd /home/admin/web/citydeft.com/public_html/ && yarn start"
