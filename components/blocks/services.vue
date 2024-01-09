@@ -80,7 +80,9 @@ import { mapGetters } from 'vuex'
     border-radius: 1rem;
     overflow: hidden;
     @include flex-center;
-    // max-width: 32rem;
+    @include bp($point_2) {
+        display: none;
+    }
     img {
         width: 100%;
         // height: 100%;
@@ -92,8 +94,14 @@ import { mapGetters } from 'vuex'
     li {
         @include flex-start;
         align-items: flex-start;
+        @include bp($point_2) {
+            min-height: 13.5rem;
+        }
         &:not(:last-child) {
             margin-bottom: 7rem;
+            @include bp($point_2) {
+                margin-bottom: 4rem;
+            }
         }
 
         p {

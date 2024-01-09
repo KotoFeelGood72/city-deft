@@ -34,6 +34,9 @@
         font-weight: 500;
         font-family: $font_2;
         margin-bottom: 2.4rem;
+        @include bp($point_2) {
+            font-size: 2rem;
+        }
     }
 }
 
@@ -47,6 +50,9 @@ ul {
             font-family: $font_2;
             color: $dark-light;
             @include flex-start;
+            @include bp($point_2) {
+                font-size: 1.4rem;
+            }
 
             .icon {
                 margin-right: 1rem;

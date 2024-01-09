@@ -8,7 +8,6 @@
                             <NuxtImg 
                                 :src="item.img"
                                 alt="" 
-                                placeholder
                                 loading="lazy"
                             />
                         </nuxt-link>

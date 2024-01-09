@@ -9,7 +9,6 @@
                                 <NuxtImg 
                                     src="logo.png"
                                     alt=""
-                                    placeholder
                                     loading="lazy"
                                 />
                             </nuxt-link>
@@ -18,7 +17,7 @@
                         <ul class="footer-social">
                             <li v-for="(item, i) in getData['contacts'].social" :key="'social-footer-' + i">
                                 <a target="_blank" :href="item.link">
-                                    <icon :icon="item.icon"/>
+                                    <icons v-if="item.icon" :icon="item.icon"/>
                                 </a>
                             </li>
                         </ul>
@@ -47,6 +46,9 @@
 
 .footer {
     background: #F7F7F7;
+    @include bp($point_2) {
+        font-size: 1.2rem;
+    }
 }
 
 .footer_main {

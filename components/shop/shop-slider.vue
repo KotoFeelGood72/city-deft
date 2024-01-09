@@ -5,7 +5,6 @@
                 <NuxtImg 
                     :src="item.images"
                     alt=""
-                    placeholder
                     loading="lazy"
                 />
             </swiper-slide>
@@ -16,7 +15,6 @@
                     <NuxtImg 
                         :src="item.images"
                         alt=""
-                        placeholder
                         loading="lazy"
                     />
                 </a>
@@ -99,6 +97,13 @@
     height: 51.9rem;
     max-width: 77%;
     margin-right: 2rem;
+
+    @include bp($point_2) {
+        flex-direction: column;
+        max-width: 50%;
+        // overflow: hidden;
+        align-items: flex-start;
+    }
     // flex-grow: 1;
     // max-width: 100%;
 
@@ -115,14 +120,20 @@
 .shop-slider-thumb {
     height: 100%;
     min-width: 12.2rem;
-}
-
-.shop-slider-thumb {
     margin-right: 1.5rem;
     .swiper-slide {
         border-radius: 1rem;
     }
+    @include bp($point_2) {
+        order: 2;
+        width: 100%;
+        // min-width: 100%;
+        margin-right: 0;
+        max-height: 10rem;
+        overflow: hidden;
+    }
 }
+
 
 
 .shop-slider {
@@ -130,6 +141,9 @@
     max-width: 100%;
     width: 100%;
     flex-grow: 1;
+    @include bp($point_2) {
+        margin-bottom: 2rem;
+    }
     a {
         @include flex-center;
         width: 100%;

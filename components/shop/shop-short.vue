@@ -11,7 +11,7 @@
             <p>Добавить в избранное</p>
         </div>
         <div class="group-btn">
-            <v-btn name="Оставить заявку"/>
+            <v-btn name="Оставить заявку" @click.native="open('form')"/>
             <v-btn name="Онлайн-просмотр" class="border"/>
         </div>
         <div class="card-info">
@@ -34,7 +34,12 @@
         components: {
             vBtn,
         },
-        props: ['info']
+        props: ['info'],
+        methods: {
+            open(modal) {
+                this.$store.commit('openPopup', modal)
+            }
+        }
     }
 </script>
 

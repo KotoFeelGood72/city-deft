@@ -8,6 +8,9 @@
         <transition name="translate">
             <modal-form v-if="getPopup('form')"/>
         </transition>
+        <transition name="translate">
+            <modal-burger v-if="getPopup('burger')"/>
+        </transition>
         <Footer/>
     </div>
 </template>
@@ -17,9 +20,10 @@
     import Footer from '@/components/templates/Footer';
     import actions from '@/components/blocks/actions';
     import modalForm from '../modal/modal-form';
+    import modalBurger from '../modal/modal-burger.vue';
     import { mapGetters } from 'vuex'
     export default {
-        components: { Header, Footer, actions, modalForm },
+        components: { Header, Footer, actions, modalForm, modalBurger },
         data() {
             return {
                 isForms: false,
@@ -30,9 +34,7 @@
                 const pages = ['/', '/about'];
                 return !pages.includes(this.$route.path);
             },
-            ...mapGetters([
-                'getPopup'
-            ]),
+            ...mapGetters(['getPopup']),
         }
     }
 </script>

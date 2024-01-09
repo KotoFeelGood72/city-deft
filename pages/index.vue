@@ -7,7 +7,7 @@
           <div class="feature-house__main">
             <div class="feature-house__top">
                 <section-title :level="3" title="Лучшие предложения" class="big"/>
-                <nuxt-link to="/">Смотреть все</nuxt-link>
+                <nuxt-link to="/estate">Смотреть все</nuxt-link>
             </div>
             <ul class="feature-list grid-3">
               <li v-for="(item, i) in feature" :key="'product-' + i">
@@ -30,7 +30,6 @@
                     <NuxtImg 
                       :src="item.acf.img" 
                       alt=""
-                      placeholder
                       loading="lazy"
                     />
                     <h3>{{ item.name }}</h3>
@@ -158,6 +157,9 @@
   grid-template-areas: 
             "a b c"
             "a d e";
+  @include bp($point_2) {
+    grid-gap: 1rem;
+  }
   li {
     &:nth-child(1) {
       grid-area: a;
@@ -178,6 +180,7 @@
     position: relative;
     overflow: hidden;
 
+
     &:hover {
       img {
         transform: scale(1.3);
@@ -195,6 +198,10 @@
       font-size: 2.4rem;
       font-family: $font_2;
       font-weight: 500;
+
+      @include bp($point_2) {
+        font-size: 2rem;
+      }
       &:before {
         position: absolute;
         top: 50%;

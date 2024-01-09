@@ -12,7 +12,6 @@
                     <NuxtImg 
                         src="about.png" 
                         alt=""
-                        placeholder
                         loading="lazy"
                     />
                 </div>
@@ -59,11 +58,13 @@
 
 .actions {
     background-color: $gray;
+    overflow: hidden
 }
 
 .actions_main {
     @include flex-space;
     align-items: flex-start;
+    position: relative;
 
     .description {
         padding: 3rem 0 6rem 0;
@@ -80,6 +81,9 @@
     max-width: 62.7rem;
     margin-right: 5rem;
     padding: 6rem 0 4.3rem 0;
+    @include bp($point_2) {
+        max-width: 50%;
+    }
 }
 
 .big-name {
@@ -91,6 +95,12 @@
     height: 100%;
     max-width: 56rem;
     margin-bottom: -.5rem;
+    @include bp($point_2) {
+        position: absolute;
+        bottom: 0;
+        right: -5rem;
+        margin-bottom: 0;
+    }
     img {
         object-fit: contain;
         width: 100%;

@@ -4,15 +4,14 @@
             <nuxt-link :to="`/estate/${data.slug}`">
                 <NuxtImg 
                     :src="data.acf.gallery[0].images"
-                    placeholder
                     loading="lazy"
                 />
             </nuxt-link>
         </div>
         <div class="product-card__content">
             <div class="product-card__top">
-                <h3>{{ data.title.rendered }}</h3>
-                <button type="button" class="btn-add__heart">
+                <h3>{{ data.title.rendered ? data.title.rendered : data.title }}</h3>
+                <button type="button" class="btn-add__heart" :class="{'active': activeFavorites}" @click="addToFavorites">
                     <icons icon="mdi:heart"/>
                 </button>
             </div>
@@ -43,8 +42,34 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     export default {
         props: ['data'],
+        data() {
+            return {
+                activeFavorites: false,
+            }
+        },
+        methods: {
+            addToFavorites() {
+                const isFavorite = this.getFavorites.some(p => p.id === this.data.id);
+                if (isFavorite) {
+                    this.$store.dispatch('removeFromFavorites', this.data.id);
+                    this.$toast('Обьект удален из избранного', {type: 'error'})
+                } else {
+                    this.$store.dispatch('addToFavorites', this.data);
+                    this.$toast('Успешно добавлено в избранное', {type: 'success'})
+                }
+                this.activeFavorites = !isFavorite;
+            },
+        },
+        mounted() {
+            const isFavorite = this.getFavorites.some(p => p.id === this.data.id);
+            this.activeFavorites = isFavorite;
+        },
+        computed: {
+            ...mapGetters(['getFavorites'])
+        }
     }
 </script>
 
@@ -87,6 +112,13 @@
     height: 2rem;
     @include flex-center;
     cursor: pointer;
+
+    &.active {
+        color: $red;
+        &:hover {
+            color: $red;
+        }
+    }
     &:hover {
         color: $accent;
     }

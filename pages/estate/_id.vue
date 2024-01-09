@@ -11,7 +11,7 @@
                     <section-title title="Описание" class="big"/>
                     <div class="txt-block" v-html="data.acf.description"/>
                 </div>
-                <div class="house_description__info">
+                <div class="house_description__info" v-if="data.acf.params">
                     <section-title title="Инфрастуктура" class="big"/>
                     <ul class="info-description">
                         <li v-for="(item, i) in data.acf.params" :key="'industries-' + i + item.icon.value">
@@ -23,14 +23,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="house-review" v-if="data.acf.videos">
+            <div class="house-review" v-if="data.acf.videos.video">
                 <section-title title="Видео-обзор" class="big"/>
                 <div class="home_review__video">
                     <a :href="data.acf.videos.video" data-fancybox>
-                        <NuxtImg 
+                        <NuxtImg
                             :src="data.acf.videos.img"
                             alt=""
-                            placeholder
                             loading="lazy"
                         />
                         <div class="play">
@@ -62,7 +61,7 @@
             async getPageID() {
                 const response = await this.$axios.$get(`wp-json/wp/v2/estate/?slug=${this.$route.params.id}`)
                 this.data = response[0]
-            }
+            },
         },
         mounted() {
             this.getPageID();
@@ -80,6 +79,9 @@
 
 .house {
     padding-top: 7rem;
+    @include bp($point_2) {
+        padding-top: 4rem;
+    }
     .container {
         &>.big {
             margin-bottom: 3rem;
@@ -91,18 +93,32 @@
     @include flex-start;
     align-items: flex-start;
 
+    @include bp($point_2) {
+        flex-direction: column;
+    }
+
     .house_desciption__txt {
         margin-right: 4rem;
         max-width: 60%;
+        @include bp($point_2) {
+            max-width: 100%;
+            margin: 0 0 6rem 0;
+        }
     }
 
     .big {
         margin-bottom: 5rem;
+        @include bp($point_2) {
+            margin-bottom: 2rem;
+        }
     }
 
     .txt-block {
         :deep(p, ul, li) {
             font-size: 1.8rem;
+            @include bp($point_2) {
+                font-size: 1.4rem;
+            }
             &:not(:last-child) {
                 margin-bottom: 2rem;
             }
@@ -114,6 +130,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(47%, 1fr));
     grid-gap: 2rem;
+    @include bp($point_2) {
+        width: 100%
+    }
     li {
         @include flex-start;
         color: $dark-light;
@@ -135,6 +154,9 @@
 
 .house_description__info {
     flex-grow: 1;
+    @include bp($point_2) {
+        width: 100%;
+    }
 }
 
 .house_desciption {
@@ -179,6 +201,10 @@
             transition: all .3s ease;
             width: 5rem;
             height: 5rem;
+            @include bp($point_2) {
+                width: 4rem;
+                height: 4rem;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 <template>
     <div class="modal-form">
+        <div class="modalform-bg" @click="closeModal('form')"></div>
         <div class="form__main">
             <div class="close" @click="closeModal('form')"><icons icon="ooui:close"/></div>
             <div class="form__header">
@@ -69,6 +70,15 @@
     color: $white;
 }
 
+.modalform-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000075;
+}
+
 .modal-form {
     position: fixed;
     top: 0;
@@ -77,7 +87,6 @@
     height: 100%;
     @include flex-center;
     z-index: 11;
-    background-color: #00000075;
 
     .form__main {
         max-width: 72.9rem;

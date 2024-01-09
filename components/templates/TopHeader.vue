@@ -2,7 +2,7 @@
     <div class="top-header">
         <div class="container">
             <div class="top-header__main">
-                <ul class="social-list">
+                <ul class="social-list" v-if="getData.contacts && getData.contacts.messenger">
                     <li v-for="(item, i) in getData.contacts.messenger" :key="'social-' + i">
                         <a :href="item.link">
                             <icons v-if="item.icon" :icon="item.icon"/>
@@ -54,7 +54,9 @@
 
 .social-list, .contacts-list {
     @include flex-start;
-
+    @include bp($point_2) {
+        font-size: 1.4rem;
+    }
 }
 
 .social-list {
@@ -62,6 +64,10 @@
     li {
         width: 4rem;
         height: 4rem;
+        @include bp($point_2) {
+            width: 3rem;
+            height: 3rem;
+        }
         a {
             @include flex-center;
             width: 100%;
@@ -91,6 +97,9 @@
 
 .top-header__main {
     padding: 1rem 0;
+    @include bp($point_2) {
+        padding: .5rem 0;
+    }
 }
 
 </style>

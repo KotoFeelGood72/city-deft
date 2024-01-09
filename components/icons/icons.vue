@@ -1,6 +1,6 @@
 <template>
     <Icon :icon="icon" :width="width" :height="height" :color="color" />
-  </template>
+</template>
   
   <script>
   import { Icon } from '@iconify/vue2';
@@ -12,7 +12,8 @@
     props: {
       icon: {
         type: String,
-        required: true
+        required: true,
+        default: 'defaultIcon'
       },
       width: {
         type: [Number, String],

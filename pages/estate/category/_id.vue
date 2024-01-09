@@ -6,13 +6,13 @@
                 <div class="shop__main">
                     <section-title v-if="pageName.name" :title="pageName.name" class="big"/>      
                     <ul class="grid-3">
-                        <li v-for="(item, i) in products" :key="'shop-product-' + i">
+                        <li v-for="(item, i) in estate" :key="'shop-product-' + i">
                             <products-card :data="item"/>
                         </li>
                     </ul>
                     <paginate
-                        :page-count="10"
-                        :page-range="3"
+                        v-if="pages"
+                        :page-count="pages"
                         v-model="page"
                         :container-class="'global-paginate'"
                         :prev-class="'paginate-prev'"
@@ -34,26 +34,55 @@
             sectionTitle,
             productsCard,
         },
+        watch: {
+            page(newPage) {
+                this.getCategory(this.pageName.id, newPage);
+                this.updateURL(newPage);
+            }
+        },
         data() {
             return {
                 page: 1,
-                products: [],
+                pages: null,
+                estate: [],
                 pageName: '',
             }
         },
         methods: {
             async getCategory(id) {
-                const response = await this.$axios.$get(`wp-json/wp/v2/estate?category=${id}`)
-                this.products = response
+                try {
+                    const response = await this.$axios.get(`wp-json/wp/v2/estate?estate_categories=${id}&per_page=6&page=${this.page}`);
+                    if (response && response.headers) {
+                        this.pages = parseInt(response.headers['x-wp-totalpages'])
+                        this.estate = response.data;
+                        window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: 'smooth'
+                        });
+                    }
+                } catch (error) {
+                    console.error('Ошибка при получении данных категории:', error);
+                }
             },
             async getCategoryName(id) {
                 const response = await this.$axios.$get(`wp-json/wp/v2/estate_categories?slug=${id}`)
-                this.pageName = response[0]
+                return response[0]
+            },
+            updateURL(page) {
+                this.$router.push({ query: { ...this.$route.query, page: page.toString() } });
             },
         },
         mounted() {
-            this.getCategory(this.$route.params.id);
-            this.getCategoryName(this.$route.params.id);
+            Promise.all([
+                this.getCategoryName(this.$route.params.id)
+                .then((res) => {
+                    if(res) {
+                        this.pageName = res
+                        this.getCategory(res.id);
+                    }
+                })
+            ])
         }
     }
 </script>

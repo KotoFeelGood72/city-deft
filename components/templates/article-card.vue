@@ -4,7 +4,6 @@
             <NuxtImg 
                 :src="data.img"
                 alt=""
-                placeholder
                 loading="lazy"
             />
         </div>

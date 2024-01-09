@@ -9,9 +9,9 @@
                     </div>
                 </nuxt-link>
                 <transition name="translate">
-                    <ul v-if="activeIndex === i && item.submenu && item.on_submenu">
+                    <ul class="sub-menu" v-if="activeIndex === i && item.submenu && item.on_submenu">
                         <li v-for="(subitem, i) in item.submenu" :key="'nav-' + i" class="nav_item__submenu">
-                            <nuxt-link :to="subitem.link">{{ subitem.name }}</nuxt-link>
+                            <nuxt-link :to="item.link + subitem.link">{{ subitem.name }}</nuxt-link>
                         </li>
                     </ul>
                 </transition>
@@ -26,57 +26,6 @@
         data() {
             return {
                 activeIndex: null,
-                nav: [
-                    {
-                        name: 'Недвижимость',
-                        link: '/',
-                        submenu: [
-                            { name: 'Эксклюзивные предложения', link: '' },
-                            { name: 'Новостройка', link: '' },
-                            { name: 'Вторичное жилье', link: '' },
-                            { name: 'На берегу моря', link: '' },
-                            { name: 'Для гражданства', link: '' }
-                        ]
-                    },
-                    {
-                        name: 'Услуги',
-                        link: '/',
-                        submenu: [
-                            { name: 'Ознакомительный тур', link: '' },
-                            { name: 'Онлайн-подбор', link: '' },
-                            { name: 'Продать недвижимость', link: '' },
-                            { name: 'Послепродажный сервис', link: '' },
-                        ]
-                    },
-                    {
-                        name: 'О компании',
-                        link: '/',
-                        submenu: [
-                            { name: 'О нас', link: '' },
-                            { name: 'Наша команда', link: '' },
-                            { name: 'Вакансии', link: '' },
-                        ]
-                    },
-                    {
-                        name: 'Отзывы',
-                        link: ''
-                    },
-                    {
-                        name: 'Полезное',
-                        link: '/',
-                        submenu: [
-                            { name: 'Новости', link: '' },
-                            { name: 'Процедура покупки', link: '' },
-                            { name: 'Гражданство и ВНЖ', link: '' },
-                            { name: 'Инвестиции', link: '' },
-                            { name: 'Статьи', link: '' },
-                        ]
-                    },
-                    {
-                        name: 'Контакты',
-                        link: ''
-                    },
-                ]
             }
         },
         computed: {
@@ -95,7 +44,7 @@
     @include flex-start;
     font-family: $font_2;
     font-weight: 400;
-    margin: -3rem -3rem 0 0;
+    margin: -3rem -3rem -1rem 0;
     &>li {
         padding: 3rem 3rem 0 0;
         position: relative;
@@ -110,7 +59,7 @@
             position: relative;
             padding-right: 2rem;
             @include flex-start;
-
+            margin-bottom: 1rem;
         }
 
         ul {
@@ -123,9 +72,10 @@
             font-size: 1.4rem;
             font-family: $font_2;
             color: $dark-light;
-            min-width: 25rem;
+            box-shadow: 0 0 20px 0 #00000010;
 
             li {
+                white-space: nowrap;
                 a {
                     &:hover {
                         color: $orange;
@@ -167,11 +117,12 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Define the final state of entering and initial state of leaving */
+
 .translate-enter-to, .translate-leave {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 
 </style>
