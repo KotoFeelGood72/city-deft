@@ -28,7 +28,5 @@ jobs:
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "./"
           target: "/home/admin/web/citydeft.com/public_html/"
-      - name: Start the app on the server
-        run: yarn start
       # - name: Start the app on the server
         # run: ssh -i /home/admin/.ssh/33 ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} -v "cd /home/admin/web/citydeft.com/public_html/ && yarn start"
