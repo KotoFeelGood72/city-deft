@@ -29,4 +29,5 @@ jobs:
           source: "./"
           target: "/home/admin/web/citydeft.com/public_html/"
       - name: Start the app on the server
-        run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} -v "cd /home/admin/web/citydeft.com/public_html/ && yarn start"
+        run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} "cd /home/admin/web/citydeft.com/public_html/ && nohup yarn start > /dev/null 2>&1 &"
+
