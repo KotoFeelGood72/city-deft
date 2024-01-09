@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -28,5 +29,3 @@ jobs:
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "./"
           target: "/home/admin/web/citydeft.com/public_html/"
-      - name: Start the app on the server
-        run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} -v "cd /home/admin/web/citydeft.com/public_html/ && yarn start"
