@@ -27,4 +27,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "./"
-          target: "/home/admin/web/citydeft.com/public_html/deft-group/"
+          target: "/home/admin/web/citydeft.com/public_html/"
+      - name: Start the app on the server
+        run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} "cd /home/admin/web/citydeft.com/public_html/ && yarn start"
