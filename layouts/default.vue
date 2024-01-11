@@ -20,7 +20,7 @@
     import Footer from '@/components/templates/Footer';
     import actions from '@/components/blocks/actions';
     import modalForm from '../modal/modal-form';
-    import modalBurger from '../modal/modal-burger.vue';
+    import modalBurger from '../modal/modal-burger';
     import { mapGetters } from 'vuex'
     export default {
         components: { Header, Footer, actions, modalForm, modalBurger },
