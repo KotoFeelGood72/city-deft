@@ -30,10 +30,10 @@ export default {
     baseURL: process.env.APP_BASE_URL
   },
 
-  server: {
-    host: '0.0.0.0',// Monitor all network adapter servers to ensure that the production server can be accessed
-    port: 3000 // Project port
-  },
+  // server: {
+  //   host: '0.0.0.0',// Monitor all network adapter servers to ensure that the production server can be accessed
+  //   port: 3000 // Project port
+  // },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
