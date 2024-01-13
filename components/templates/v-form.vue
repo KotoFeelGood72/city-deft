@@ -1,7 +1,7 @@
 <template>
     <div class="form" :class="data ? data.class : ''">
         <v-input :place="data ? data.question : 'Введите имя'" v-model="form.name" :error="$v.form.name.$error"/>
-        <v-input place="Введите номер телефона" type="tel" v-model="form.tel" :error="$v.form.tel.$error" :mask="true"/>
+        <v-input place="Введите номер телефона" type="tel" v-model="form.tel" :error="$v.form.tel.$error"/>
         <v-btn :name="data ? data.btn : 'Отправить'" :class="data ? data.btnClass : ''" @connect="sendForm"/>
     </div>
 </template>

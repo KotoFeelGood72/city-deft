@@ -46,11 +46,13 @@
     import shopSlider from '../../components/shop/shop-slider'
     import shopShort from '../../components/shop/shop-short';
     import sectionTitle from '../../components/ui-kit/section-title';
+    import icons from '@/components/icons/icons';
     export default {
         components: {
             shopSlider,
             shopShort,
             sectionTitle,
+            icons
         },
         data() {
             return {

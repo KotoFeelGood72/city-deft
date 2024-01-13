@@ -63,6 +63,14 @@ export const actions = {
   },
 
   async nuxtServerInit({ commit, dispatch }) {
+
+    setInterval(() => {
+      const used = process.memoryUsage();
+      for (let key in used) {
+        console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
+      }
+    }, 5000);
+    
     try {
       // Загрузка данных фильтра
       const filterData = { page: 1, per_page: 6 };

@@ -21,8 +21,12 @@
 </template>
 
 <script>
+    import icons from '../icons/icons.vue';
     export default {
         props: ['data'],
+        components: {
+            icons
+        }
     }
 </script>
 

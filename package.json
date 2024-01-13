@@ -19,7 +19,6 @@
     "sass": "^1.69.5",
     "sass-loader": "10",
     "swiper": "^5.2.0",
-    "v-mask": "^2.3.0",
     "vue": "^2.7.10",
     "vue-awesome-swiper": "^4.1.1",
     "vue-mq": "^1.0.1",

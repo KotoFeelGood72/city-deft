@@ -2,14 +2,18 @@
     <div class="button" @click="$emit('connect')">
         <p v-if="name">{{ name }}</p>
         <div class="icon" v-if="icon">
-            <icon :icon="icon" :width="width" :height="height"/>
+            <icons :icon="icon" :width="width" :height="height"/>
         </div>
     </div>
 </template>
 
 <script>
+    import icons from '../icons/icons.vue';
     export default {
        props: ['name', 'icon', 'width', 'height'], 
+       components: {
+        icons
+       }
     }
 </script>
 

@@ -29,10 +29,12 @@
 </template>
 
 <script>
+    import icons from '@/components/icons/icons.vue';
     import vBtn from '../ui-kit/v-btn'
     export default {
         components: {
             vBtn,
+            icons
         },
         props: ['info'],
         methods: {

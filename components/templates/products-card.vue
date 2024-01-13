@@ -12,12 +12,12 @@
             <div class="product-card__top">
                 <h3>{{ data.title.rendered ? data.title.rendered : data.title }}</h3>
                 <button type="button" class="btn-add__heart" :class="{'active': activeFavorites}" @click="addToFavorites">
-                    <icons icon="mdi:heart"/>
+                    <icons :icon="'mdi:heart'"/>
                 </button>
             </div>
             <div class="product-card__medium">
                 <div class="product-card__address">
-                    <icons icon="ph:map-pin-fill"/>
+                    <icons :icon="'ph:map-pin-fill'"/>
                     <p>{{ data.acf.address }}</p>
                 </div>
                 <ul class="product-card__services">
@@ -43,12 +43,16 @@
 
 <script>
     import { mapGetters } from 'vuex'
+    import icons from '../icons/icons.vue';
     export default {
         props: ['data'],
         data() {
             return {
                 activeFavorites: false,
             }
+        },
+        components: {
+            icons
         },
         methods: {
             addToFavorites() {

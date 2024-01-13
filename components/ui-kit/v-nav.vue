@@ -22,11 +22,15 @@
 
 <script>
     import { mapGetters } from 'vuex'
+    import icons from '../icons/icons.vue';
     export default {
         data() {
             return {
                 activeIndex: null,
             }
+        },
+        components: {
+            icons
         },
         computed: {
             ...mapGetters(['getData'])

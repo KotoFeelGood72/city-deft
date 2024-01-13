@@ -28,7 +28,8 @@
 </template>
 
 <script>
-   import Multiselect from 'vue-multiselect'
+    import Multiselect from 'vue-multiselect'
+    import icons from '../icons/icons.vue';
     export default {
         props: ['option', 'label', 'id', 'multiple'],
         data() {
@@ -38,7 +39,8 @@
             };
         },
         components: {
-            Multiselect
+            Multiselect,
+            icons
         },
         methods: {
             selected() {

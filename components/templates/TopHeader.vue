@@ -31,9 +31,13 @@
 
 <script>
     import { mapGetters } from 'vuex'
+    import icons from '../icons/icons.vue';
     export default {
         computed: {
             ...mapGetters(['getData'])
+        },
+        components: {
+            icons
         }
     }
 </script>

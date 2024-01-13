@@ -35,11 +35,13 @@
     import TopHeader from './TopHeader';
     import vBtn from '@/components/ui-kit/v-btn';
     import { mapGetters } from 'vuex'
+    import icons from '../icons/icons.vue';
     export default {
         components: {
             TopHeader,
             vNav,
-            vBtn
+            vBtn,
+            icons
         },
         methods: {
             open(modal) {

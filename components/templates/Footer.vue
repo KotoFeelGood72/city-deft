@@ -34,8 +34,9 @@
 <script>
     import vColNav from '../ui-kit/v-col-nav';
     import { mapGetters } from 'vuex'
+    import icons from '../icons/icons.vue';
     export default {
-        components: { vColNav },
+        components: { vColNav, icons },
         computed: {
             ...mapGetters(['getData'])
         }

@@ -46,11 +46,13 @@
 </template>
 
 <script>
+import icons from '../icons/icons.vue';
 import sectionTitle from '../ui-kit/section-title'
 import { mapGetters } from 'vuex'
     export default {
         components: {
-            sectionTitle
+            sectionTitle,
+            icons
         },
         computed: {
             ...mapGetters(['getData'])
