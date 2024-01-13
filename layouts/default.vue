@@ -29,14 +29,6 @@
                 isForms: false,
             }
         },
-        mounted() {
-            setInterval(() => {
-      const used = process.memoryUsage();
-      for (let key in used) {
-        console.log(`Memory: ${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
-      }
-    }, 5000);
-        },
         computed: {
             isForm() {
                 const pages = ['/', '/about'];

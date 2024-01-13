@@ -1,5 +1,5 @@
 <template>
-    <div class="button" @click="$emit('connect')">
+    <div class="button">
         <p v-if="name">{{ name }}</p>
         <div class="icon" v-if="icon">
             <icons :icon="icon" :width="width" :height="height"/>

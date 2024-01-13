@@ -1,28 +1,21 @@
 <template>
     <header>
-        <TopHeader/>
+        <TopHeader :top="getData"/>
         <div class="container">
             <div class="header-main">
                 <div class="logo">
                     <nuxt-link to="/">
-                        <NuxtImg 
-                            src="logo.png"
-                            alt=""
-                            loading="lazy"
-                        />
+                        <NuxtImg src="logo.png" alt="" loading="lazy" />
                     </nuxt-link>
                 </div>
-                <v-nav class="header-navs"/>
+                <v-nav class="header-navs" :nav="getData['header-nav']"/>
                 <div class="actions">
                     <v-btn name="Связаться" @click.native="open('form')"/>
                     <nuxt-link to="/favorite" class="hearth-link">
                         <icons icon="mdi:heart"/>
-                        <div class="counter" v-if="getFavorites.length">{{ getFavorites.length }}</div>
+                        <div class="counter" v-if="countFavorite">{{ countFavorite }}</div>
                     </nuxt-link>
-                    <div class="trigger-burger" @click="open('burger')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div class="trigger-burger" @click="open('burger')"><span></span><span></span><span></span>
                     </div>
                 </div>
             </div>
@@ -31,25 +24,25 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+
     import vNav from '@/components/ui-kit/v-nav';
     import TopHeader from './TopHeader';
     import vBtn from '@/components/ui-kit/v-btn';
-    import { mapGetters } from 'vuex'
     import icons from '../icons/icons.vue';
+
     export default {
-        components: {
-            TopHeader,
-            vNav,
-            vBtn,
-            icons
-        },
+        components: { TopHeader, vNav, vBtn, icons },
         methods: {
             open(modal) {
                 this.$store.commit('openPopup', modal)
             }
         },
         computed: {
-            ...mapGetters(['getFavorites'])
+            ...mapGetters(['getFavorites', 'getData']),
+            countFavorite() {
+                return this.getFavorites.length
+            }
         }
     }
 </script>

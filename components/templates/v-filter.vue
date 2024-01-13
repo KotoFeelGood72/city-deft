@@ -50,7 +50,7 @@
                         <div class="filter-reset" @click="resetFilter">Сбросить фильтр</div>
                     </li>
                     <li>
-                        <v-btn name="Поиск" class="rounded-btn small" @connect="searchEvent"/>
+                        <v-btn name="Поиск" class="rounded-btn small" @click.native="searchEvent"/>
                     </li>
                 </ul>
             </div>

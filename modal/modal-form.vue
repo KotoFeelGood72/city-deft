@@ -41,8 +41,9 @@
 <script>
     import vForm from '../components/templates/v-form'
     import sectionTitle from '../components/ui-kit/section-title'
+    import icons from '../components/icons/icons.vue'
     export default {
-        components: { sectionTitle, vForm },
+        components: { sectionTitle, vForm, icons },
         data() {
             return {
                 social: [

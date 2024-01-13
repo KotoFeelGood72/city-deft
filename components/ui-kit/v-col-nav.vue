@@ -1,5 +1,5 @@
 <template>
-    <nav class="col-nav">
+    <nav class="col-nav" v-if="data">
         <h6>{{ data.title }}</h6>
         <ul>
             <li v-for="(item, i) in data.nav" :key="'col-nav' + data.id + i">
@@ -23,7 +23,12 @@
 <script>
     import icons from '../icons/icons.vue';
     export default {
-        props: ['data'],
+        props: {
+            data: {
+                type: Object,
+                required: true,
+            }
+        },
         components: {
             icons
         }

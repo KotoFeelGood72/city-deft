@@ -2,8 +2,9 @@
   "name": "city-deft",
   "version": "1.0.0",
   "private": true,
+  "workspaces": ["workspace-a", "workspace-b"],
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt node --inspect",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
@@ -17,11 +18,10 @@
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "sass": "^1.69.5",
-    "sass-loader": "10",
+    "sass-loader": "^10.0.0",
     "swiper": "^5.2.0",
     "vue": "^2.7.10",
     "vue-awesome-swiper": "^4.1.1",
-    "vue-mq": "^1.0.1",
     "vue-multiselect": "^2.1.8",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",

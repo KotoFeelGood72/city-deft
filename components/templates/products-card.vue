@@ -1,5 +1,5 @@
 <template>
-    <div class="product-card" v-if="data.acf">
+    <div class="product-card" v-if="data">
         <div class="product-card__img">
             <nuxt-link :to="`/estate/${data.slug}`">
                 <NuxtImg 
@@ -21,7 +21,7 @@
                     <p>{{ data.acf.address }}</p>
                 </div>
                 <ul class="product-card__services">
-                    <li v-for="(item, i) in data.acf.arrangement" :key="'services-' + i">
+                    <li v-for="(item, i) in data.acf.arrangement" :key="'services-' + i + data.id">
                         <div class="icon">
                             <icons :icon="item.icon"/>
                         </div>
@@ -45,7 +45,12 @@
     import { mapGetters } from 'vuex'
     import icons from '../icons/icons.vue';
     export default {
-        props: ['data'],
+        props: {
+            data: {
+                type: Object,
+                required: true,
+            }
+        },
         data() {
             return {
                 activeFavorites: false,

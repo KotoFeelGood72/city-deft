@@ -1,9 +1,9 @@
 <template>
-    <div class="top-header">
+    <div class="top-header" v-show="top">
         <div class="container">
             <div class="top-header__main">
-                <ul class="social-list" v-if="getData.contacts && getData.contacts.messenger">
-                    <li v-for="(item, i) in getData.contacts.messenger" :key="'social-' + i">
+                <ul class="social-list" v-if="top">
+                    <li v-for="(item, i) in top.contacts.messenger" :key="'social-' + i">
                         <a :href="item.link">
                             <icons v-if="item.icon" :icon="item.icon"/>
                         </a>
@@ -11,16 +11,16 @@
                 </ul>
                 <ul class="contacts-list">
                     <li>
-                        <a :href="`tel:${getData.contacts.phone}`">
-                            <p>{{ getData.contacts.phone }}</p>
+                        <a :href="`tel:${top.contacts.phone}`">
+                            <p>{{ top.contacts.phone }}</p>
                         </a>
                     </li>
                     <li>
-                        <a :href="`mailto:${getData.contacts.mail}`">
+                        <a :href="`mailto:${top.contacts.mail}`">
                             <div class="icon">
                                 <icons icon="ei:envelope"/>
                             </div>
-                            <p>{{ getData.contacts.mail }}</p>
+                            <p>{{ top.contacts.mail }}</p>
                         </a>
                     </li>
                 </ul>
@@ -30,15 +30,12 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
     import icons from '../icons/icons.vue';
     export default {
-        computed: {
-            ...mapGetters(['getData'])
-        },
         components: {
             icons
-        }
+        },
+        props: ['top'],
     }
 </script>
 
