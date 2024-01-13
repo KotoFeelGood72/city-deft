@@ -1,4 +1,4 @@
-name: Deploy to fronted Nuxt JS
+name: Deploy to frontend Nuxt JS
 on:
   push:
     branches:
@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -16,10 +17,16 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Install dependencies
         run: yarn install
+
       - name: Build the app
         run: yarn build
+
+      - name: Remove old files
+        run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} "rm -rf /var/www/citydeft.com/*"
+
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v2.2.2
         with:
@@ -28,6 +35,6 @@ jobs:
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
           source: "./"
           target: "/var/www/citydeft.com"
-          # target: "/home/admin/web/citydeft.com/public_html/"
-      # - name: Start the app on the server
-        # run: ssh -i /home/admin/.ssh/33 ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} -v "cd /home/admin/web/citydeft.com/public_html/ && yarn start"
+
+      - name: Restart app using PM2
+        run: ssh -i ${{ secrets.MAIN_SECRETS_KEY }} ${{ secrets.SERVER_USER_NAME }}@${{ secrets.SERVER_HOST }} "cd /var/www/citydeft.com && yarn && pm2 restart all"
