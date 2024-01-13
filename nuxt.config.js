@@ -41,14 +41,12 @@ export default {
     // '@/plugins/icons.js',
     { src: '@/plugins/icons.js', ssr: false },
     { src: '@/plugins/vue-js-paginate.js', ssr: false },
-    { src: '@/plugins/v-mask.js', ssr: false },
     { src: '@/plugins/fancybox.js', ssr: false },
-    { src: '@/plugins/vue-mq.js', ssr: false },
     { src: '@/plugins/persistedState.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [

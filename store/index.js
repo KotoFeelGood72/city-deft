@@ -1,5 +1,3 @@
-// store/index.js
-
 export const state = () => ({
   modal: {
     form: false,
@@ -55,34 +53,26 @@ export const actions = {
     commit('SET_FILTER', response);
   },
 
-  async nuxtServerInit({ commit, dispatch }) {
-    const filterData = {
-      page: 1,
-      per_page: 6,
-    };
-
-    try {
-      await dispatch('fetchFilter', { filterData });
-    } catch (error) {
-      console.error('Ошибка при инициализации сервера:', error);
-    }
-  },
-
   async getAcfSelectValues({ commit }) {
     try {
-      const response = await this.$axios.$get(
-        '/wp-json/city/v1/acf-select-values/'
-      );
+      const response = await this.$axios.$get('/wp-json/city/v1/acf-select-values/');
       commit('SET_ACF_SELECT', response);
     } catch (error) {
-      console.log(error);
+      console.error('Ошибка при получении ACF select значений:', error);
     }
   },
 
   async nuxtServerInit({ commit, dispatch }) {
     try {
-      const response = await this.$axios.$get('wp-json/acf/v3/options/options');
-      commit('SET_DATA', response.acf);
+      // Загрузка данных фильтра
+      const filterData = { page: 1, per_page: 6 };
+      await dispatch('fetchFilter', { filterData });
+
+      // Загрузка ACF данных
+      const acfData = await this.$axios.$get('wp-json/acf/v3/options/options');
+      commit('SET_DATA', acfData.acf);
+
+      // Загрузка значений ACF Select
       await dispatch('getAcfSelectValues');
     } catch (error) {
       console.error('Ошибка при инициализации сервера:', error);
