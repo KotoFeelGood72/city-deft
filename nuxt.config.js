@@ -34,6 +34,10 @@ export default {
     host: '127.0.0.1', // Прослушивает все сетевые интерфейсы
     port: 3000 // Или любой другой порт, который вы предпочитаете
   },
+
+  generate: {
+    crawler: false
+  },
   
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
