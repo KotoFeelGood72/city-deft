@@ -4,7 +4,7 @@
   "private": true,
   "workspaces": ["workspace-a", "workspace-b"],
   "scripts": {
-    "dev": "nuxt node --inspect",
+    "dev": "nuxt --inspect",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
