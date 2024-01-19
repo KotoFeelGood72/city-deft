@@ -2,7 +2,6 @@
   "name": "city-deft",
   "version": "1.0.0",
   "private": true,
-  "workspaces": ["workspace-a", "workspace-b"],
   "scripts": {
     "dev": "nuxt --inspect",
     "build": "nuxt build",
