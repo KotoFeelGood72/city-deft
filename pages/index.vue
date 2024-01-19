@@ -55,7 +55,6 @@
   import services from '../components/blocks/services';
   import questions from '../components/blocks/questions';
 
-  import { mapGetters } from 'vuex'
   export default {
     components: {
       heroSlider,

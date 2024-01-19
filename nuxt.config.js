@@ -35,9 +35,7 @@ export default {
     port: 3000 // Или любой другой порт, который вы предпочитаете
   },
 
-  generate: {
-    crawler: false
-  },
+  mode: 'universal',
   
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
