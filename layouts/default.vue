@@ -39,7 +39,7 @@
         },
         methods: {
             async getContent() {
-                const res = await this.$axios.$get('wp-json/acf/v3/options/options');
+                const res = await this.$axios.$get('/api/wp-json/acf/v3/options/options');
                 this.data = res.acf
             }
         },

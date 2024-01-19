@@ -36,6 +36,16 @@ export default {
   },
 
   mode: 'universal',
+
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': { 
+      target: process.env.APP_BASE_URL,
+      pathRewrite: {'^/api/': ''}
+    }
+  },
   
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
