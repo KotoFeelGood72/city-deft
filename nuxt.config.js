@@ -43,10 +43,10 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // '@/plugins/icons.js',
-    { src: '@/plugins/icons.js', ssr: false },
+    // { src: '@/plugins/icons.js', ssr: false },
     { src: '@/plugins/vue-js-paginate.js', ssr: false },
     { src: '@/plugins/fancybox.js', ssr: false },
-    { src: '@/plugins/persistedState.js', ssr: false }
+    // { src: '@/plugins/persistedState.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

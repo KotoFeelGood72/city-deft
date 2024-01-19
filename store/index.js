@@ -62,23 +62,23 @@ export const actions = {
     }
   },
 
-  async nuxtServerInit({ commit, dispatch }) {
+  // async nuxtServerInit({ commit, dispatch }) {
     
-    try {
-      // Загрузка данных фильтра
-      const filterData = { page: 1, per_page: 6 };
-      await dispatch('fetchFilter', { filterData });
+  //   try {
+  //     // Загрузка данных фильтра
+  //     const filterData = { page: 1, per_page: 6 };
+  //     await dispatch('fetchFilter', { filterData });
 
-      // Загрузка ACF данных
-      const acfData = await this.$axios.$get('wp-json/acf/v3/options/options');
-      commit('SET_DATA', acfData.acf);
+  //     // Загрузка ACF данных
+  //     const acfData = await this.$axios.$get('wp-json/acf/v3/options/options');
+  //     commit('SET_DATA', acfData.acf);
 
-      // Загрузка значений ACF Select
-      await dispatch('getAcfSelectValues');
-    } catch (error) {
-      console.error('Ошибка при инициализации сервера:', error);
-    }
-  },
+  //     // Загрузка значений ACF Select
+  //     await dispatch('getAcfSelectValues');
+  //   } catch (error) {
+  //     console.error('Ошибка при инициализации сервера:', error);
+  //   }
+  // },
 
   addToFavorites({ commit }, product) {
     commit('ADD_TO_FAVORITES', product);

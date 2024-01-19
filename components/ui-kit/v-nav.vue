@@ -1,7 +1,7 @@
 <template>
     <nav class="nav">
-        <ul class="nav-list">
-            <li v-for="(item, i) in getData['header-nav']" :key="'nav-' + i" class="nav_item__parent" @mouseover="activeIndex = i" @mouseleave="activeIndex = null">
+        <ul class="nav-list" v-if="nav">
+            <li v-for="(item, i) in nav['header-nav']" :key="'nav-' + i" class="nav_item__parent" @mouseover="activeIndex = i" @mouseleave="activeIndex = null">
                 <nuxt-link :to="item.link">
                     <p>{{ item.name }}</p>
                     <div class="icon" v-if="item.submenu && item.on_submenu">
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
     import icons from '../icons/icons.vue';
     export default {
         data() {
@@ -32,8 +31,10 @@
         components: {
             icons
         },
-        computed: {
-            ...mapGetters(['getData'])
+        props: {
+            nav: {
+                type: Object
+            }
         }
     }
 </script>

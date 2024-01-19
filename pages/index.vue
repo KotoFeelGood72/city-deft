@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
-      <hero-slider :slides="getData['sale-slider']" class="home-slider"/>
-      <v-filter class="home-filter"/>
+  <div class="home" v-if="data">
+      <hero-slider :slides="data['sale-slider']" class="home-slider"/>
+      <!-- <v-filter class="home-filter"/> -->
       <div class="feature-house">
         <div class="container">
           <div class="feature-house__main">
@@ -71,6 +71,7 @@
       return {
         feature: [],
         categories: [],
+        data: null,
       }
     },
     methods: {
@@ -82,14 +83,16 @@
         const response = await this.$axios.$get('wp-json/wp/v2/estate_categories/')
         this.categories = response
       },
+      async getContent() {
+          const res = await this.$axios.$get('wp-json/acf/v3/options/options');
+          this.data = res.acf
+      }
     },
     mounted() {
       this.getFeature();
       this.getCategories();
+      this.getContent();
     },
-    computed: {
-      ...mapGetters(['getData'])
-    }
   }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="pages">
-        <Header/>
+        <Header :content="data"/>
         <main class="main">
             <Nuxt/>
         </main>
@@ -27,6 +27,7 @@
         data() {
             return {
                 isForms: false,
+                data: null,
             }
         },
         computed: {
@@ -35,6 +36,15 @@
                 return !pages.includes(this.$route.path);
             },
             ...mapGetters(['getPopup']),
+        },
+        methods: {
+            async getContent() {
+                const res = await this.$axios.$get('wp-json/acf/v3/options/options');
+                this.data = res.acf
+            }
+        },
+        mounted() {
+            this.getContent();
         }
     }
 </script>

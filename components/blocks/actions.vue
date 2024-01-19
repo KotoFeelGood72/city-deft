@@ -1,6 +1,6 @@
 <template>
-    <div class="actions" v-if="getData">
-        <div class="container">
+    <div class="actions">
+        <!-- <div class="container">
             <div class="actions_main">
                 <div class="actions_content">
                     <section-title :title="getData['action-block'].title" :level="3" class="big-xl"/>
@@ -16,7 +16,7 @@
                     />
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 

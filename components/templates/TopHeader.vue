@@ -1,8 +1,8 @@
 <template>
-    <div class="top-header" v-show="top">
+    <div class="top-header" v-if="top">
         <div class="container">
             <div class="top-header__main">
-                <ul class="social-list" v-if="top">
+                <ul class="social-list" v-if="top.contacts">
                     <li v-for="(item, i) in top.contacts.messenger" :key="'social-' + i">
                         <a :href="item.link">
                             <icons v-if="item.icon" :icon="item.icon"/>

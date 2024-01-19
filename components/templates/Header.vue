@@ -1,6 +1,6 @@
 <template>
     <header>
-        <TopHeader :top="getData"/>
+        <TopHeader :top="content"/>
         <div class="container">
             <div class="header-main">
                 <div class="logo">
@@ -8,7 +8,7 @@
                         <NuxtImg src="logo.png" alt="" loading="lazy" />
                     </nuxt-link>
                 </div>
-                <v-nav class="header-navs" :nav="getData['header-nav']"/>
+                <v-nav class="header-navs" :nav="content"/>
                 <div class="actions">
                     <v-btn name="Связаться" @click.native="open('form')"/>
                     <nuxt-link to="/favorite" class="hearth-link">
@@ -42,6 +42,11 @@
             ...mapGetters(['getFavorites', 'getData']),
             countFavorite() {
                 return this.getFavorites.length
+            }
+        },
+        props: {
+            content: {
+                type: Object,
             }
         }
     }

@@ -34,9 +34,6 @@
                 this.activeIndex = this.activeIndex === index ? false : index;
             },
         },
-        // computed: {
-        //     ...mapGetters(['getData'])
-        // }
     }
 </script>
 

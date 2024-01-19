@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
         <div class="container">
-            <div class="footer_main">
+            <!-- <div class="footer_main">
                 <div>
                     <div class="footer-col__info">
                         <div class="logo">
@@ -26,7 +26,7 @@
                 <div class="footer_col__nav" v-for="(item, i) in getData.navigation" :key="item + 'footer-navigation-' + i">
                     <v-col-nav :data="item"/>
                 </div>
-            </div>
+            </div> -->
         </div>
     </footer>
 </template>

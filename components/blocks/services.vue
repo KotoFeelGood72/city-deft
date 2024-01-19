@@ -1,7 +1,7 @@
 <template>
     <div class="services">
         <div class="container">
-            <div class="services_main">
+            <!-- <div class="services_main">
                 <section-title :title="getData['all-service'].title" :level="3" class="big"/>
                 <div class="services_columns">
                     <div>
@@ -40,7 +40,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
