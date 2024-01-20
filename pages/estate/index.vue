@@ -4,9 +4,9 @@
         <div class="shops">
             <div class="container">
                 <div class="shop__main">
-                    <section-title :title="isTitle" class="big"/>     
-                    <ul class="grid-3" v-if="getFilter">
-                        <li v-for="item in getFilter.data" :key="'shop-filters-' + item.id">
+                    <section-title title="Результаты поиска" class="big"/>   
+                    <ul class="grid-3" v-if="filtered">
+                        <li v-for="(item, i) in filtered" :key="'shop-filters-' + i">
                             <products-card :data="item"/>
                         </li>
                     </ul>
@@ -29,7 +29,7 @@
     import productsCard from '@/components/templates/products-card'
     import vFilter from '@/components/templates/v-filter'
     import sectionTitle from '@/components/ui-kit/section-title'
-    import { mapGetters } from 'vuex'
+    // import { mapGetters } from 'vuex'
     export default {
         components: {
             vFilter,
@@ -41,42 +41,69 @@
                 page: 1,
                 pages: null,
                 estate: [],
-                filterEstate: [],
+                // filterEstate: [],
+                filtered: null,
+                headers: null,
             }
         },
         watch: {
             page(newPage) {
                 this.updateURL(newPage);
-            }
+            },
+            '$route': {
+                immediate: true,
+                handler() {
+                    this.result();
+                }
+            },
         },
         methods: {
-            updateURL(page) {
+            async updateURL(page) {
                 window.scrollTo({
                     top: 0,
                     left: 0,
                     behavior: 'smooth'
                 });
-                const newQuery = {
+                const queryParams =  {
                     ...this.$route.query,
-                    page: page.toString(),
-                    per_page: 6,
-                };
-                this.$store.dispatch('fetchFilter', { filterData: newQuery }).then(() => {
-                    this.$router.push({ path: this.$route.path, query: newQuery });
-                });
+                    page: page.toString()
+                }
+                try {
+                    const response = await this.$axios.get('/api/wp-json/wp/v2/estate/filter', {
+                        params: queryParams,
+                    });
+                    this.filtered = response.data
+                    this.pages = parseInt(response.headers['x-wp-totalpages'])
+                    // console.log(this.headers)
+                } catch (error) {
+                    console.error('Ошибка при выполнении запроса:', error);
+                }
+            },
+            async result() {
+                const queryParams = this.$route.query
+                try {
+                    const response = await this.$axios.get('/api/wp-json/wp/v2/estate/filter', {
+                        params: queryParams,
+                    });
+                    this.filtered = response.data
+                    this.pages = parseInt(response.headers['x-wp-totalpages'])
+                    // console.log(this.headers)
+                } catch (error) {
+                    console.error('Ошибка при выполнении запроса:', error);
+                }
             }
         },
         mounted() {
+            this.result();
             this.pages = this.isPage
         },
         computed: {
-            ...mapGetters(['getFilter']),
-            isTitle() {
-                return this.getFilter ? 'Результаты поиска' : 'Каталог недвижимости'
-            },
-            isPage() {
-                return parseInt(this.getFilter.head['x-wp-totalpages'])
-            }
+            // isPage() {
+            //     if(this.headers) {
+            //         console.log(this.headers)
+            //         return parseInt(this.headers['x-wp-totalpages'])
+            //     }
+            // }
         }
     }
 </script>

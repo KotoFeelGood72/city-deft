@@ -2,7 +2,8 @@
     <div class="product-card" v-if="data">
         <div class="product-card__img">
             <nuxt-link :to="`/estate/${data.slug}`">
-                <NuxtImg 
+                <NuxtImg
+                    v-if="data.acf.gallery"
                     :src="data.acf.gallery[0].images"
                     loading="lazy"
                 />

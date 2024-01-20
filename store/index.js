@@ -47,20 +47,20 @@ export const mutations = {
 
 export const actions = {
   async fetchFilter({ commit }, { filterData }) {
-    const response = await this.$axios.get('wp-json/wp/v2/estate/filter', {
+    const response = await this.$axios.get('/api/wp-json/wp/v2/estate/filter', {
       params: filterData,
     });
     commit('SET_FILTER', response);
   },
 
-  async getAcfSelectValues({ commit }) {
-    try {
-      const response = await this.$axios.$get('/wp-json/city/v1/acf-select-values/');
-      commit('SET_ACF_SELECT', response);
-    } catch (error) {
-      console.error('Ошибка при получении ACF select значений:', error);
-    }
-  },
+  // async getAcfSelectValues({ commit }) {
+  //   try {
+  //     const response = await this.$axios.$get('/wp-json/city/v1/acf-select-values/');
+  //     commit('SET_ACF_SELECT', response);
+  //   } catch (error) {
+  //     console.error('Ошибка при получении ACF select значений:', error);
+  //   }
+  // },
 
   // async nuxtServerInit({ commit, dispatch }) {
     

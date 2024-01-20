@@ -113,9 +113,7 @@
                     return acc;
                 }, {});
 
-                this.$store.dispatch('fetchFilter', { filterData: filteredParams }).then(() => {
-                    this.$router.push({ path: '/estate', query: filteredParams });
-                });
+                this.$router.push({ path: '/estate', query: filteredParams });
             },
             async getCategories() {
                 try {
