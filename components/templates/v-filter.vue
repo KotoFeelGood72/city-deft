@@ -6,8 +6,9 @@
                     <div class="filter-col" v-if="categories">
                         <v-select :option="categories" label="Тип недвижимости" id="type-estate" v-model="filter.category" :multiple="false"/>
                     </div>
-                    <div class="filter-col">
-                        <v-select :option="getSelects[0]" label="Район" id="type-rayon" v-model="filter.district" :multiple="true"/>
+                    
+                    <div class="filter-col" v-if="selects[0]">
+                        <v-select :option="selects[0]" label="Район" id="type-rayon" v-model="filter.district" :multiple="true"/>
                     </div>
                     <div class="filter-col price-col">
                         <div class="label-input__group">Ценовой диапазон, €</div>
@@ -16,8 +17,8 @@
                             <v-input type="number" minilabel="до" v-model="filter.endPrice" :price="true"/>
                         </div>
                     </div>
-                    <div class="filter-col">
-                        <v-select :option="getSelects[1]" label="Планировка" id="plan" v-model="filter.plan" :multiple="true"/>
+                    <div class="filter-col" v-if="selects[1]">
+                        <v-select :option="selects[1]" label="Планировка" id="plan" v-model="filter.plan" :multiple="true"/>
                     </div>
                     <div class="filter-col max-w-small">
                         <v-input type="number" id="house-one" label="ID" v-model="filter.id"/>
@@ -25,20 +26,20 @@
                 </div>
                 <div class="medium" v-if="open">
                     <div class="filter-medium">
-                    <div class="filter-col">
-                        <v-select :option="getSelects[2]" label="Расстояние до моря" id="km" v-model="filter.km" :multiple="true"/>
+                    <div class="filter-col" v-if="selects[2]">
+                        <v-select :option="selects[2]" label="Расстояние до моря" id="km" v-model="filter.km" :multiple="true"/>
                     </div>
-                    <div class="filter-col">
-                        <v-select :option="getSelects[3]" label="Площадь" id="place" v-model="filter.place" :multiple="true"/>
+                    <div class="filter-col" v-if="selects[3]">
+                        <v-select :option="selects[3]" label="Площадь" id="place" v-model="filter.place" :multiple="true"/>
                     </div>
-                    <div class="filter-col">
-                        <v-select :option="getSelects[4]" label="Преимущества" id="adv" v-model="filter.adv" :multiple="true"/>
+                    <div class="filter-col" v-if="selects[4]">
+                        <v-select :option="selects[4]" label="Преимущества" id="adv" v-model="filter.adv" :multiple="true"/>
                     </div>
-                    <div class="filter-col">
-                        <v-select :option="getSelects[5]" label="Год постройки" id="date" v-model="filter.date" :multiple="true"/>
+                    <div class="filter-col" v-if="selects[5]">
+                        <v-select :option="selects[5]" label="Год постройки" id="date" v-model="filter.date" :multiple="true"/>
                     </div>
-                    <div class="filter-col">
-                        <v-select :option="getSelects[6]" label="Инфаструктура" id="info" v-model="filter.infastructure" :multiple="true"/>
+                    <div class="filter-col" v-if="selects[6]">
+                        <v-select :option="selects[6]" label="Инфаструктура" id="info" v-model="filter.infastructure" :multiple="true"/>
                     </div>
                     </div>
                 </div>
@@ -79,6 +80,7 @@
             return {
                 open: this.isOpen ? this.isOpen : false,
                 categories: [],
+                selects: [],
                 filter: {
                     category: null,
                     district: null,
@@ -95,10 +97,6 @@
                     per_page: 6,
                 },
             }
-        },
-        computed: {
-            ...mapGetters(['getSelects']),
-            
         },
         methods: {
             resetFilter() {
@@ -121,45 +119,24 @@
             },
             async getCategories() {
                 try {
-                    const result = await this.$axios.$get('wp-json/wp/v2/estate_categories/');
+                    const result = await this.$axios.$get('/api/wp-json/wp/v2/estate_categories/');
                     this.categories = result.map(item => item.name)
                 } catch {
                     console.log('error')
                 }
             },
-
-            // async getResultFilter() {
-            //     const initialParams = {
-            //         category: this.filter.category,
-            //         district: this.filter.district,
-            //         startPrice: this.filter.startPrice,
-            //         endPrice: this.filter.endPrice,
-            //         id: this.filter.id,
-            //         km: this.filter.km,
-            //         place: this.filter.place,
-            //         adv: this.filter.adv,
-            //         year: this.filter.year,
-            //         infastructure: this.filter.infastructure,
-            //     }
-            //     const params = Object.entries(initialParams).reduce((acc, [key, value]) => {
-            //         if (value !== null && value !== '' && value !== undefined) {
-            //             acc[key] = value;
-            //         }
-            //         return acc;
-            //     }, {});
-
-            //     try {
-            //         await this.$axios.get('wp-json/wp/v2/estate/filter', { params });
-            //         const queryString = new URLSearchParams(params).toString();
-            //         this.$router.push(`/estate?${queryString}`);
-            //         console.log('filter')
-            //     } catch (error) {
-            //         console.error('Ошибка при запросе:', error);
-            //     }
-            // }
+            async getAcfSelectValues() {
+                try {
+                const response = await this.$axios.$get('/api/wp-json/city/v1/acf-select-values/');
+                this.selects = response
+                } catch (error) {
+                console.error('Ошибка при получении ACF select значений:', error);
+                }
+            },
         },
         mounted() {
             this.getCategories();
+            this.getAcfSelectValues();
         }
     }
 </script>

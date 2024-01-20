@@ -11,7 +11,7 @@
         <transition name="translate">
             <modal-burger v-if="getPopup('burger')"/>
         </transition>
-        <Footer/>
+        <Footer :data="data"/>
     </div>
 </template>
 

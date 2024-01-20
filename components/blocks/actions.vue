@@ -1,12 +1,12 @@
 <template>
-    <div class="actions">
-        <!-- <div class="container">
+    <div class="actions" v-if="data">
+        <div class="container">
             <div class="actions_main">
                 <div class="actions_content">
-                    <section-title :title="getData['action-block'].title" :level="3" class="big-xl"/>
-                    <p class="description" :class="{'form-description': isForm}">{{ getData['action-block'].txt }}</p>
+                    <section-title :title="data['action-block'].title" :level="3" class="big-xl"/>
+                    <p class="description" :class="{'form-description': isForm}">{{ data['action-block'].txt }}</p>
                     <component :is="isForm" :class="'actions-form'" :data="optionsForm"/>
-                    <v-btn v-if="!isForm" name="Узнать больше" icon="bi:chevron-right" class="big-name" @click.native="$router.push(getData['action-block'].link)"/>
+                    <v-btn v-if="!isForm" name="Узнать больше" icon="bi:chevron-right" class="big-name" @click.native="$router.push(data['action-block'].link)"/>
                 </div>
                 <div class="actions__img">
                     <NuxtImg 
@@ -16,7 +16,7 @@
                     />
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -33,9 +33,9 @@
             vForm,
             vBtn
         },
-        props: ['forms'],
+        props: ['forms', 'data'],
         computed: {
-            ...mapGetters(['getData']),
+            // ...mapGetters(['getData']),
             isForm() {
                 if(this.forms && this.getData) {
                     return vForm

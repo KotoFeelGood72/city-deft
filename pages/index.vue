@@ -1,7 +1,7 @@
 <template>
   <div class="home" v-if="data">
       <hero-slider :slides="data['sale-slider']" class="home-slider"/>
-      <!-- <v-filter class="home-filter"/> -->
+      <v-filter class="home-filter"/>
       <div class="feature-house">
         <div class="container">
           <div class="feature-house__main">
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <actions class="home-about"/>
+      <actions class="home-about" :data="data"/>
       <services class="home-services"/>
       <questions class="home-questions"/>
   </div>
@@ -75,15 +75,15 @@
     },
     methods: {
       async getFeature() {
-        const response = await this.$axios.$get('wp-json/wp/v2/estate?meta=2')
+        const response = await this.$axios.$get('/api/wp-json/wp/v2/estate?meta=2')
         this.feature = response
       },
       async getCategories() {
-        const response = await this.$axios.$get('wp-json/wp/v2/estate_categories/')
+        const response = await this.$axios.$get('/api/wp-json/wp/v2/estate_categories/')
         this.categories = response
       },
       async getContent() {
-          const res = await this.$axios.$get('wp-json/acf/v3/options/options');
+          const res = await this.$axios.$get('/api/wp-json/acf/v3/options/options');
           this.data = res.acf
       }
     },

@@ -1,7 +1,7 @@
 <template>
-    <footer class="footer">
+    <footer class="footer" v-if="data">
         <div class="container">
-            <!-- <div class="footer_main">
+            <div class="footer_main">
                 <div>
                     <div class="footer-col__info">
                         <div class="logo">
@@ -13,9 +13,9 @@
                                 />
                             </nuxt-link>
                         </div>
-                        <div class="footer_info__descr">{{ getData['brand-short'] }}</div>
+                        <div class="footer_info__descr">{{ data['brand-short'] }}</div>
                         <ul class="footer-social">
-                            <li v-for="(item, i) in getData['contacts'].social" :key="'social-footer-' + i">
+                            <li v-for="(item, i) in data['contacts'].social" :key="'social-footer-' + i">
                                 <a target="_blank" :href="item.link">
                                     <icons v-if="item.icon" :icon="item.icon"/>
                                 </a>
@@ -23,23 +23,21 @@
                         </ul>
                     </div>
                 </div>
-                <div class="footer_col__nav" v-for="(item, i) in getData.navigation" :key="item + 'footer-navigation-' + i">
+                <div class="footer_col__nav" v-for="(item, i) in data.navigation" :key="item + 'footer-navigation-' + i">
                     <v-col-nav :data="item"/>
                 </div>
-            </div> -->
+            </div>
         </div>
     </footer>
 </template>
 
 <script>
     import vColNav from '../ui-kit/v-col-nav';
-    import { mapGetters } from 'vuex'
+    // import { mapGetters } from 'vuex'
     import icons from '../icons/icons.vue';
     export default {
         components: { vColNav, icons },
-        computed: {
-            ...mapGetters(['getData'])
-        }
+        props: ['data'],
     }
 </script>
 
