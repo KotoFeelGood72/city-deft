@@ -26,7 +26,7 @@ export default {
   },
 
   axios: {
-    baseURL: process.env.API_BASE_URL
+    baseURL: "http://kotenkqx.beget.tech/"
   },
 
   server: {
@@ -39,7 +39,7 @@ export default {
   },
   proxy: {
     '/api/': { 
-      target: process.env.API_BASE_URL,
+      target: "http://kotenkqx.beget.tech/",
       pathRewrite: {'^/api/': ''}
     }
   },
