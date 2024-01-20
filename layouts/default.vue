@@ -12,6 +12,9 @@
             <modal-burger v-if="getPopup('burger')"/>
         </transition>
         <Footer :data="data"/>
+        <transition name="translate">
+            <loader v-if="isLoading"/>
+        </transition>
     </div>
 </template>
 
@@ -21,13 +24,15 @@
     import actions from '@/components/blocks/actions';
     import modalForm from '../modal/modal-form';
     import modalBurger from '../modal/modal-burger';
+    import loader from '../components/ui-kit/loader';
     import { mapGetters } from 'vuex'
     export default {
-        components: { Header, Footer, actions, modalForm, modalBurger },
+        components: { Header, Footer, actions, modalForm, modalBurger, loader },
         data() {
             return {
                 isForms: false,
                 data: null,
+                isLoading: true,
             }
         },
         computed: {
@@ -41,11 +46,16 @@
             async getContent() {
                 const res = await this.$axios.$get('/api/wp-json/acf/v3/options/options');
                 this.data = res.acf
-            }
+            },
         },
         mounted() {
             this.getContent();
-        }
+            this.$nextTick(() => {
+                setTimeout(() => {
+                    this.isLoading = false;
+                }, 1500)
+            });
+        },
     }
 </script>
 

@@ -14,6 +14,7 @@
                 deselectLabel=""
                 openDirection="bottom"
                 @input="selected"
+                :hide-selected="stateSelected"
             >
                 <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length" v-show="!isOpen">Выбрано: {{ values.length }}</span></template>
                 <template slot="clear">
@@ -31,7 +32,7 @@
     import Multiselect from 'vue-multiselect'
     import icons from '../icons/icons.vue';
     export default {
-        props: ['option', 'label', 'id', 'multiple'],
+        props: ['option', 'label', 'id', 'multiple', 'stateSelected'],
         data() {
             return {
                 selectedValue: [],

@@ -4,7 +4,7 @@
             <div class="filter__main">
                 <div class="filter-top">
                     <div class="filter-col" v-if="categories">
-                        <v-select :option="categories" label="Тип недвижимости" id="type-estate" v-model="filter.category" :multiple="false"/>
+                        <v-select :option="categories" label="Тип недвижимости" id="type-estate" v-model="filter.category" :multiple="false" :stateSelected="true"/>
                     </div>
                     
                     <div class="filter-col" v-if="selects[0]">

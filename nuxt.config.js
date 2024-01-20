@@ -15,7 +15,6 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/style.scss'
@@ -27,7 +26,7 @@ export default {
   },
 
   axios: {
-    baseURL: "http://kotenkqx.beget.tech/"
+    baseURL: process.env.API_BASE_URL
   },
 
   server: {
@@ -35,30 +34,22 @@ export default {
     port: 3000 // Или любой другой порт, который вы предпочитаете
   },
 
-  mode: 'universal',
-
   axios: {
     proxy: true
   },
   proxy: {
     '/api/': { 
-      target: "http://kotenkqx.beget.tech/",
+      target: process.env.API_BASE_URL,
       pathRewrite: {'^/api/': ''}
     }
   },
-  
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '@/plugins/icons.js',
-    // { src: '@/plugins/icons.js', ssr: false },
     { src: '@/plugins/vue-js-paginate.js', ssr: false },
     { src: '@/plugins/fancybox.js', ssr: false },
-    // { src: '@/plugins/persistedState.js', ssr: false }
+    { src: '@/plugins/persistedState.js', ssr: false }
   ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -79,8 +70,4 @@ export default {
     quality: 70,
     dir: 'assets/img'
   },
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
 }

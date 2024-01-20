@@ -10,8 +10,13 @@
                             <products-card :data="item"/>
                         </li>
                     </ul>
+                    <ul class="grid-3" v-else>
+                        <li v-for="(item, i) in estate" :key="'shop-filters-' + i">
+                            <products-card :data="item"/>
+                        </li>
+                    </ul>
                     <paginate
-                        v-if="pages"
+                        v-if="pages && pages > 1"
                         :page-count="pages"
                         :page-range="3"
                         v-model="page"
@@ -29,7 +34,6 @@
     import productsCard from '@/components/templates/products-card'
     import vFilter from '@/components/templates/v-filter'
     import sectionTitle from '@/components/ui-kit/section-title'
-    // import { mapGetters } from 'vuex'
     export default {
         components: {
             vFilter,
@@ -41,14 +45,12 @@
                 page: 1,
                 pages: null,
                 estate: [],
-                // filterEstate: [],
                 filtered: null,
-                headers: null,
             }
         },
         watch: {
             page(newPage) {
-                this.updateURL(newPage);
+                this.result(newPage);
             },
             '$route': {
                 immediate: true,
@@ -58,15 +60,10 @@
             },
         },
         methods: {
-            async updateURL(page) {
-                window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: 'smooth'
-                });
-                const queryParams =  {
+            async result(page) {
+                const queryParams = {
                     ...this.$route.query,
-                    page: page.toString()
+                    page: page ? page.toString() : null
                 }
                 try {
                     const response = await this.$axios.get('/api/wp-json/wp/v2/estate/filter', {
@@ -74,20 +71,6 @@
                     });
                     this.filtered = response.data
                     this.pages = parseInt(response.headers['x-wp-totalpages'])
-                    // console.log(this.headers)
-                } catch (error) {
-                    console.error('Ошибка при выполнении запроса:', error);
-                }
-            },
-            async result() {
-                const queryParams = this.$route.query
-                try {
-                    const response = await this.$axios.get('/api/wp-json/wp/v2/estate/filter', {
-                        params: queryParams,
-                    });
-                    this.filtered = response.data
-                    this.pages = parseInt(response.headers['x-wp-totalpages'])
-                    // console.log(this.headers)
                 } catch (error) {
                     console.error('Ошибка при выполнении запроса:', error);
                 }
@@ -95,16 +78,7 @@
         },
         mounted() {
             this.result();
-            this.pages = this.isPage
         },
-        computed: {
-            // isPage() {
-            //     if(this.headers) {
-            //         console.log(this.headers)
-            //         return parseInt(this.headers['x-wp-totalpages'])
-            //     }
-            // }
-        }
     }
 </script>
 

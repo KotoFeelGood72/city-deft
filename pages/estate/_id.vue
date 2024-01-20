@@ -61,7 +61,7 @@
         },
         methods: {
             async getPageID() {
-                const response = await this.$axios.$get(`wp-json/wp/v2/estate/?slug=${this.$route.params.id}`)
+                const response = await this.$axios.$get(`/api/wp-json/wp/v2/estate/?slug=${this.$route.params.id}`)
                 this.data = response[0]
             },
         },
