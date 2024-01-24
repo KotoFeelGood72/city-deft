@@ -26,7 +26,7 @@ export default {
   },
 
   axios: {
-    baseURL: "http://kotenkqx.beget.tech/"
+    baseURL: "https://api.citydeft.com/"
   },
 
   server: {
@@ -39,7 +39,7 @@ export default {
   },
   proxy: {
     '/api/': { 
-      target: "http://kotenkqx.beget.tech/",
+      target: "https://api.citydeft.com/",
       pathRewrite: {'^/api/': ''}
     }
   },
