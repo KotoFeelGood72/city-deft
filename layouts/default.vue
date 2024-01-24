@@ -55,6 +55,18 @@
                     this.isLoading = false;
                 }, 1500)
             });
+            this.$nuxt.$router.beforeEach((to, from, next) => {
+                this.isLoading = true;
+                next();
+            });
+            this.$nuxt.$router.afterEach(() => {
+                setTimeout(() => {
+                    if(this.data) {
+                        this.isLoading = false;
+                    }
+
+                }, 1000)
+            });
         },
     }
 </script>
