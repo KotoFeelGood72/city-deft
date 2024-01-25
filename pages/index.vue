@@ -24,10 +24,11 @@
               <section-title title="Недвижимость по категориям" :level="3" class="big-xl"/>
               <p>Подборка недвижимости в Турции</p>
             </div>
-            <ul class="home-cat__list">
+            <ul class="home-cat__list" v-if="categories">
               <li v-for="item in categories" :key="'categories-' + item.id">
                   <nuxt-link :to="`/estate/category/${item.slug}`">
-                    <NuxtImg 
+                    <NuxtImg
+                      v-if="item.acf.img" 
                       :src="item.acf.img" 
                       alt=""
                       loading="lazy"

@@ -5,7 +5,8 @@
                 <swiper class="swiper swiper-container" :options="sliderOptions">
                     <swiper-slide class="swiper-slide" v-for="(item, i) in slides" :key="'slides-' + i">
                         <nuxt-link :to="item.link">
-                            <NuxtImg 
+                            <NuxtImg
+                                v-if="item.img"
                                 :src="item.img"
                                 alt="" 
                                 loading="lazy"

@@ -26,17 +26,14 @@ export default {
   },
 
   axios: {
-    baseURL: "https://api.citydeft.com/"
+    baseURL: "https://api.citydeft.com/",
+    proxy: true
   },
-
   server: {
     host: '127.0.0.1', // Прослушивает все сетевые интерфейсы
     port: 3000 // Или любой другой порт, который вы предпочитаете
   },
 
-  axios: {
-    proxy: true
-  },
   proxy: {
     '/api/': { 
       target: "https://api.citydeft.com/",

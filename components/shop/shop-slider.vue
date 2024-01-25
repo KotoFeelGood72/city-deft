@@ -2,7 +2,8 @@
     <div class="shop-slider__main">
         <swiper v-if="showThumbs" class="shop-slider-thumb" :options="sliderOptions.thumbs" ref="thumbs" @swiper="initSlider">
             <swiper-slide v-for="(item, i) in slider" :key="'slide-thumb-' + i">
-                <NuxtImg 
+                <NuxtImg
+                    v-if="item.images"
                     :src="item.images"
                     alt=""
                     loading="lazy"
@@ -11,8 +12,9 @@
         </swiper>
         <swiper class="shop-slider" :options="sliderOptions.slider" ref="main" @swiper="initSlider">
             <swiper-slide v-for="(item, i) in slider" :key="'slide-' + i">
-                <a data-fancybox="gallery" :href="item.images">
-                    <NuxtImg 
+                <a data-fancybox="gallery" v-if="item.images" :href="item.images">
+                    <NuxtImg
+                        v-if="item.images"
                         :src="item.images"
                         alt=""
                         loading="lazy"

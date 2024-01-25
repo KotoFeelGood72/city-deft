@@ -24,7 +24,7 @@ svg{
     height: 100%;
     @include flex-center;
     z-index: 9999;
-    background-color: #f0eeee;
+    background-color: $white;
     color: #ff0000;
 }
 </style>
