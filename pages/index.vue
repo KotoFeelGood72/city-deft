@@ -41,7 +41,7 @@
         </div>
       </div>
       <actions class="home-about" :data="data"/>
-      <services class="home-services"/>
+      <services class="home-services" :data="data"/>
       <questions class="home-questions"/>
   </div>
 </template>
@@ -157,38 +157,20 @@
 .home-cat__list {
   display: grid;
   grid-gap: 3rem;
-  grid-template-areas: 
-            "a b c"
-            "a d e";
-  @include bp($point_2) {
-    grid-gap: 1rem;
-  }
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  
   li {
-    &:nth-child(1) {
-      grid-area: a;
-    }
-    &:nth-child(2) {
-      grid-area: b;
-    }
-    &:nth-child(3) {
-      grid-area: c;
-    }
-    &:nth-child(4) {
-      grid-area: d;
-    }
-    &:nth-child(5) {
-      grid-area: e;   
-    }
-
     position: relative;
     overflow: hidden;
-
-
+    max-height: 30rem;
+    border-radius: .5rem;
     &:hover {
       img {
-        transform: scale(1.3);
+        transform: scale(1.1) rotate(-5deg);
       }
     }
+  }
+
 
     h3 {
       position: absolute;
@@ -229,8 +211,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: all 10s ease;
+      transition: all .6s ease;
     }
-  }
 }
 </style>

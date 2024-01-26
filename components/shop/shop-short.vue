@@ -21,7 +21,12 @@
                         <icons :icon="item.icon.value"/>
                     </div>
                     <span>{{ item.icon.label }}: </span>
-                    <p>{{ item.value }}</p>
+                    <div v-if="item.value">
+                        <p v-for="subitem in item.value" v-if="!isNumber(subitem)">{{ subitem }}</p>
+                    </div>
+
+                    <!-- <p>{{ item.value }}</p> -->
+                    <!-- <p>test: {{ item.value }}</p> -->
                 </li>
             </ul>
         </div>
@@ -40,6 +45,9 @@
         methods: {
             open(modal) {
                 this.$store.commit('openPopup', modal)
+            },
+            isNumber(value) {
+                return !isNaN(parseFloat(value)) && isFinite(value);
             }
         }
     }

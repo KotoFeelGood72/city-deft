@@ -1,12 +1,12 @@
 <template>
     <div class="services">
         <div class="container">
-            <!-- <div class="services_main">
-                <section-title :title="getData['all-service'].title" :level="3" class="big"/>
+            <div class="services_main">
+                <section-title :title="data['all-service'].title" :level="3" class="big"/>
                 <div class="services_columns">
                     <div>
                         <ul class="services__list">
-                            <li v-for="(item, i) in getData['all-service']['list-left']" :key="'services-one-' + i">
+                            <li v-for="(item, i) in data['all-service']['list-left']" :key="'services-one-' + i">
                                 <div class="icon">
                                     <icons :icon="item.icon"/>
                                 </div>
@@ -20,7 +20,7 @@
                     <div>
                         <div class="column-img">
                             <NuxtImg 
-                                :src="getData['all-service'].img"
+                                :src="data['all-service'].img"
                                 alt=""
                                 loading="lazy"
                             />
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <ul class="services__list">
-                            <li v-for="(item, i) in getData['all-service']['list-right']" :key="'services-two-' + i">
+                            <li v-for="(item, i) in data['all-service']['list-right']" :key="'services-two-' + i">
                                 <div class="icon">
                                     <icons :icon="item.icon"/>
                                 </div>
@@ -40,7 +40,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
@@ -54,9 +54,7 @@ import { mapGetters } from 'vuex'
             sectionTitle,
             icons
         },
-        computed: {
-            ...mapGetters(['getData'])
-        }
+        props: ['data'],
     }
 </script>
 
