@@ -20,13 +20,15 @@
                     <div class="info_item__icon">
                         <icons :icon="item.icon.value"/>
                     </div>
-                    <span>{{ item.icon.label }}: </span>
+                    <span class="short-label">{{ item.icon.label }}: </span>
                     <div v-if="item.value">
-                        <p v-for="subitem in item.value" v-if="!isNumber(subitem)">{{ subitem }}</p>
-                    </div>
-
-                    <!-- <p>{{ item.value }}</p> -->
-                    <!-- <p>test: {{ item.value }}</p> -->
+                        <template v-if="Array.isArray(item.value)">
+                            <p v-for="(value, key) in item.value" :key="key">{{ value }}</p>
+                        </template>
+                        <template v-else>
+                            <p>{{ item.value }}</p>
+                        </template>
+                </div>
                 </li>
             </ul>
         </div>
@@ -46,9 +48,6 @@
             open(modal) {
                 this.$store.commit('openPopup', modal)
             },
-            isNumber(value) {
-                return !isNaN(parseFloat(value)) && isFinite(value);
-            }
         }
     }
 </script>
@@ -132,5 +131,9 @@
             }
         }
     }
+}
+
+.short-label {
+    margin-right: 0.5rem;
 }
 </style>
