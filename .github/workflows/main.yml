@@ -31,4 +31,4 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            yarn dev
+            service bt restart
