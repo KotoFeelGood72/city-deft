@@ -36,6 +36,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            systemctl daemon-reload
-            service bt stop
-            service bt start
+            sudo /bin/systemctl daemon-reload
+            sudo /usr/sbin/service bt stop
+            sleep 5  # Задержка в 5 секунд
+            sudo /usr/sbin/service bt start
