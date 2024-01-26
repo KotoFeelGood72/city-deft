@@ -35,7 +35,7 @@
                     <div class="product-card__price" v-if="data.acf.price">{{ formattedPrice }}</div>
                 </div>
                 <div>
-                    <nuxt-link :to="`/estate/${data.slug}`">Смотреть обьектыыыыыыыыыыы</nuxt-link>
+                    <nuxt-link :to="`/estate/${data.slug}`">Смотреть обьект 12121212</nuxt-link>
                 </div>
             </div>
         </div>
