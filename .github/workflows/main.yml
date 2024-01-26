@@ -7,22 +7,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # ... предыдущие шаги (checkout, cache, install) ...
-      
-      # Убираем шаг Build, если он не нужен
-      # - name: Build the app
-      #   run: yarn build
-      
-      # Шаг для деплоя на сервер
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: yarn install
+      - name: Build the app
+        run: yarn build
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v2.2.2
         with:
           SSH_PRIVATE_KEY: ${{ secrets.MAIN_SECRETS_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER_NAME }}
-          SOURCE: "./"
-          TARGET: "/www/wwwroot/citydeft.com"
-
+          source: "./"
+          target: "/var/www/citydeft.com"
       - name: Restart Node.js project
         uses: appleboy/ssh-action@master
         with:
