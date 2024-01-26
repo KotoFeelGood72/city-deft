@@ -32,4 +32,4 @@ jobs:
           key: ${{ secrets.MAIN_SECRETS_KEY }}
           script: |
             cd /www/wwwroot/citydeft.com
-            pm2 restart all # или любая другая команда для запуска/перезапуска вашего приложения
+            yarn dev
