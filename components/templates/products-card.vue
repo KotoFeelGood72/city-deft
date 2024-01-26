@@ -32,7 +32,7 @@
             </div>
             <div class="product-card__bottom">
                 <div>
-                    <div class="product-card__price">{{ data.acf.price }}</div>
+                    <div class="product-card__price" v-if="data.acf.price">{{ formattedPrice }}</div>
                 </div>
                 <div>
                     <nuxt-link :to="`/estate/${data.slug}`">Смотреть обьект</nuxt-link>
@@ -78,7 +78,21 @@
             this.activeFavorites = isFavorite;
         },
         computed: {
-            ...mapGetters(['getFavorites'])
+            ...mapGetters(['getFavorites']),
+            formattedPrice() {
+                let price = this.data.acf.price;
+
+                // Проверяем, содержит ли строка уже точку
+                if (price.includes('.')) return price;
+
+                // Применяем форматирование, если длина строки больше 3
+                if (price.length > 3) {
+                    return price.slice(0, -3) + '.' + price.slice(-3);
+                }
+
+                // Возвращаем исходную строку, если её длина 3 или меньше
+                return price;
+            }
         }
     }
 </script>

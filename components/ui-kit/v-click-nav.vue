@@ -47,7 +47,7 @@
 }
 .icon {
     position: absolute;
-    top: 58%;
+    top: 55%;
     right: 0;
     left: auto;
     transform: translateY(-50%);

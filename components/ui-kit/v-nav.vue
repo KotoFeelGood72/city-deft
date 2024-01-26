@@ -95,12 +95,12 @@
 }
 .icon {
     position: absolute;
-    top: 58%;
+    top: 54%;
     right: 0;
     left: auto;
     transform: translateY(-50%);
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 1.2rem;
+    height: 1.2rem;
     color: $gray;
     @include flex-center;
     transition: all .3s ease;
