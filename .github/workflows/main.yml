@@ -30,4 +30,4 @@ jobs:
           username: ${{ secrets.SERVER_USER_NAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            pm2 restart citydeft
+            pm2 restart 1
