@@ -1,7 +1,7 @@
 <template>
     <nav class="nav">
         <ul class="nav-list">
-            <li v-for="(item, i) in nav" :key="'nav-' + i" class="nav_item__parent" @click="toggleSubMenu(i)">
+            <li v-for="(item, i) in nav['header-nav']" :key="'nav-' + i" class="nav_item__parent" @click="toggleSubMenu(i)">
                 <div :class="{'active': activeIndex === i}">
                     <p>{{ item.name }}</p>
                     <div class="icon" v-if="item.submenu && item.on_submenu" :class="{'active': activeIndex === i}">
@@ -22,7 +22,11 @@
 
 <script>
     // import { mapGetters } from 'vuex'
+    import icons from '../icons/icons.vue';
     export default {
+        components: {
+            icons
+        },
         data() {
             return {
                 activeIndex: false,

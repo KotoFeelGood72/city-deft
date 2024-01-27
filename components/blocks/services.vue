@@ -71,8 +71,16 @@ import { mapGetters } from 'vuex'
     @include flex-start;
     align-items: flex-start;
     margin: -4rem -4rem 0 0;
+
+    @include bp($point_2) {
+        flex-direction: column;
+        margin: 0;
+    }
     &>div {
         padding: 4rem 4rem 0 0;
+        @include bp($point_2) {
+            padding: 0;
+        }
     }
 }
 

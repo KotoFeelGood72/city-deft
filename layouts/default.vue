@@ -9,7 +9,7 @@
             <modal-form v-if="getPopup('form')"/>
         </transition>
         <transition name="translate">
-            <modal-burger v-if="getPopup('burger')"/>
+            <modal-burger v-if="getPopup('burger')" :modal="data"/>
         </transition>
         <Footer :data="data"/>
         <transition name="translate">

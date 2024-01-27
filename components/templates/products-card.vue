@@ -1,6 +1,11 @@
 <template>
     <div class="product-card" v-if="data">
         <div class="product-card__img">
+            <ul class="product-status__list">
+                <li v-for="(item, i) in data.acf.status" class="product-status__item">
+                    <div>{{ item }}</div>
+                </li>
+            </ul>
             <nuxt-link :to="`/estate/${data.slug}`">
                 <NuxtImg
                     v-if="data.acf.gallery"
@@ -11,7 +16,7 @@
         </div>
         <div class="product-card__content">
             <div class="product-card__top">
-                <h3>{{ data.title.rendered ? data.title.rendered : data.title }}</h3>
+                <nuxt-link :to="`/estate/${data.slug}`"><h3>{{ data.title.rendered ? data.title.rendered : data.title }}</h3></nuxt-link>
                 <button type="button" class="btn-add__heart" :class="{'active': activeFavorites}" @click="addToFavorites">
                     <icons :icon="'mdi:heart'"/>
                 </button>
@@ -72,6 +77,18 @@
                 }
                 this.activeFavorites = !isFavorite;
             },
+            statusCard(key) {
+                switch (key) {
+                    case 'Продано':
+                    return 'Продано';
+                    case 'Арендовано':
+                    return 'Арендовано';
+                    case 'На рассмотрение':
+                    return 'На рассмотрение';
+                    default:
+                    return 'Неизвестный статус';
+                }
+            }
         },
         mounted() {
             const isFavorite = this.getFavorites.some(p => p.id === this.data.id);
@@ -81,18 +98,12 @@
             ...mapGetters(['getFavorites']),
             formattedPrice() {
                 let price = this.data.acf.price;
-
-                // Проверяем, содержит ли строка уже точку
                 if (price.includes('.')) return price;
-
-                // Применяем форматирование, если длина строки больше 3
                 if (price.length > 3) {
                     return price.slice(0, -3) + '.' + price.slice(-3);
                 }
-
-                // Возвращаем исходную строку, если её длина 3 или меньше
                 return price;
-            }
+            },
         }
     }
 </script>
@@ -102,6 +113,7 @@
 .product-card__img {
     width: 100%;
     height: 32.1rem;
+    position: relative;
     img {
         height: 100%;
         width: 100%;
@@ -109,10 +121,35 @@
     }
 }
 
+.product-status__list {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    pointer-events: none;
+    margin: -.5rem -.5rem 0 0;
+    @include flex-start;
+    flex-wrap: wrap;
+    li {
+        padding: .5rem .5rem 0 0;
+        div {
+            border-radius: .5rem;
+            background-color: $yellow;
+            font-size: 1.4rem;
+            font-family: $font_2;
+            padding: .7rem 1.5rem;
+            color: $dark;
+        }
+    }
+}
+
 .product-card {
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0px 8px 70px 0px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 .8rem 7rem 0 rgba(0, 0, 0, 0.07);
+    transition: all .3s ease;
+    &:hover {
+        box-shadow: 0 .8rem 10rem 0 rgba(0, 0, 0, 0.158);
+    }
 }
 
 .product-card__content {
@@ -184,8 +221,14 @@
 .product-card__bottom {
     @include flex-space;
     margin: -3rem -3rem 0 0;
+    @include bp($point_4) {
+        margin: -1.5rem -1.5rem 0 0;
+    }
     &>div {
         padding: 3rem 3rem 0 0;
+        @include bp($point_4) {
+            padding: 1.5rem 1.5rem 0 0;
+        }
     }
 
     a {
@@ -196,6 +239,11 @@
         font-size: 1.6rem;
         font-weight: 500;
         border-radius: 0.5rem;
+
+        @include bp($point_4) {
+            padding: 1.2rem 1.5rem;
+            font-size: 1.4rem;
+        }
         &:hover {
             background-color: $accent;
         }

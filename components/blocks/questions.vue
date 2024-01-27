@@ -39,6 +39,10 @@
     position: relative;
     z-index: 11;
 
+    @include bp($point_2) {
+        padding: 4rem 3rem;
+    }
+
     .big {
         text-align: center;
         margin-bottom: 3.1rem;
@@ -48,7 +52,11 @@
 .questions-form {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-    grid-gap: 4rem
+    grid-gap: 4rem;
+    @include bp($point_2) {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        grid-gap: 1rem;
+    }
 }
 
 </style>

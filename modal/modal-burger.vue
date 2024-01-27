@@ -14,22 +14,25 @@
                     />
                 </nuxt-link>
             </div>
-            <v-click-nav class="burger-nav"/>
+            <v-click-nav class="burger-nav" :nav="modal"/>
         </div>
     </div>
 </template>
 
 <script>
     import vClickNav from '../components/ui-kit/v-click-nav.vue';
+    import icons from '../components/icons/icons.vue';
     export default {
         components: {
-            vClickNav
+            vClickNav,
+            icons
         },
         methods: {
             closeModal(modal) {
                 this.$store.commit('openPopup', modal)
             }
-        }
+        },
+        props: ['modal'],
     }
 </script>
 

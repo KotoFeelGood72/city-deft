@@ -126,10 +126,18 @@
   @include flex-space;
   margin-bottom: 4rem;
 
+  @include bp($point_4) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
   a {
     font-size: 2.4rem;
     font-weight: 600;
     color: $gray;
+    @include bp($point_4) {
+      font-size: 2rem;
+    }
     &:hover {
       color: $accent;
     }
@@ -158,6 +166,11 @@
   display: grid;
   grid-gap: 3rem;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  
+  @include bp($point_4) {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    grid-gap: 1rem;
+  }
   
   li {
     position: relative;

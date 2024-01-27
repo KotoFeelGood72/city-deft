@@ -108,6 +108,10 @@ a {
 		grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
 		grid-gap: 3rem 2rem;
 	}
+	@include bp($point_4) {
+		grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+		grid-gap: 3rem 2rem;
+	}
 }
 
 .global-paginate {

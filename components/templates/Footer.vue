@@ -71,6 +71,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
     grid-gap: 4rem;
+    @include bp($point_2) {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        grid-gap: 2rem;
+    }
 }
 
 .footer_info__descr {

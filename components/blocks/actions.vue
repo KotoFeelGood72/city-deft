@@ -83,6 +83,11 @@
     padding: 6rem 0 4.3rem 0;
     @include bp($point_2) {
         max-width: 50%;
+        
+    }
+    @include bp($point_4) {
+        max-width: 100%;
+        margin: 0;
     }
 }
 
@@ -100,6 +105,9 @@
         bottom: 0;
         right: -5rem;
         margin-bottom: 0;
+    }
+    @include bp($point_4) {
+        display: none;
     }
     img {
         object-fit: contain;

@@ -22,6 +22,10 @@
                 </a>
             </swiper-slide>
         </swiper>
+        <div class="slider-nav" v-if="showThumbs">
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
     </div>
 </template>
 
@@ -66,8 +70,13 @@
                         direction: "horizontal",
                         spaceBetween: 10,
                         speed: 700,
+                        loop: true,
                         keyboard: {
                             enabled: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
                         },
                     },
                 }
@@ -78,6 +87,8 @@
                 if (this.$refs.thumbs.$swiper && this.$refs.main.$swiper) {
                     this.$refs.main.$swiper.thumbs.swiper = this.$refs.thumbs.$swiper;
                     this.$refs.main.$swiper.thumbs.init();
+                    this.$refs.main.$swiper.navigation.init();
+                    this.$refs.main.$swiper.navigation.update();
                     this.$refs.main.$swiper.update();
                 }
             }
@@ -99,12 +110,17 @@
     height: 51.9rem;
     max-width: 77%;
     margin-right: 2rem;
+    position: relative;
 
     @include bp($point_2) {
         flex-direction: column;
         max-width: 50%;
         // overflow: hidden;
         align-items: flex-start;
+    }
+    @include bp($point_4) {
+        max-width: 100%;
+        margin: 0 0 2rem 0;
     }
     // flex-grow: 1;
     // max-width: 100%;
@@ -143,6 +159,7 @@
     max-width: 100%;
     width: 100%;
     flex-grow: 1;
+    position: relative;
     @include bp($point_2) {
         margin-bottom: 2rem;
     }
@@ -156,6 +173,52 @@
     }
 }
 
+// .slider__wrapper {
+//     position: relative;
+//     width: 100%;
+//     max-width: 100%;
+// }
+
+.slider-nav {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    top: 45%;
+    left: auto;
+    right: 2rem;
+    transform: translateY(-50%);
+    max-width: 77%;
+    color: $white;
+    pointer-events: none;
+    
+    @include bp($point_4) {
+        max-width: 100%;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+        top: 37%;
+    }
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    color: $white;
+    font-size: 1.8rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    @include flex-center;
+    width: 5rem;
+    height: 5rem;
+    background-color: #00000083;
+    border-radius: 100%;
+    transition: all .3s ease;
+    pointer-events: all;
+    &:hover {
+        background-color: #000000d5;
+
+    }
+}
 
 
 

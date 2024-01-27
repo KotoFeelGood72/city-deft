@@ -77,6 +77,10 @@
 .house_hero__main {
     @include flex-start;
     margin-bottom: 3rem;
+
+    @include bp($point_2) {
+        flex-direction: column;
+    }
 }
 
 .house {
@@ -140,6 +144,9 @@
         color: $dark-light;
         font-family: $font_2;
         font-size: 1.8rem;
+        @include bp($point_4) {
+            font-size: 1.2rem;
+        }
     }
 }
 
@@ -147,6 +154,10 @@
     margin-right: 2rem;
     width: 2.8rem;
     @include flex-center;
+    @include bp($point_4) {
+        margin-right: 1rem;
+        width: 2rem;
+    }
     svg {
         width: 100%;
         height: 100%;

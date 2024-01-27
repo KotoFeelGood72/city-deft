@@ -95,7 +95,7 @@
 }
 .icon {
     position: absolute;
-    top: 54%;
+    top: 50%;
     right: 0;
     left: auto;
     transform: translateY(-50%);
@@ -128,6 +128,9 @@
   transform: translateY(0);
 }
 
+.nuxt-link-active {
+    color: $orange;
+}
 
 
 </style>

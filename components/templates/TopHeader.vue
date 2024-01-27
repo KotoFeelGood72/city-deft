@@ -51,6 +51,9 @@
 
 .top-header__main {
     @include flex-end;
+    @include bp($point_2) {
+        justify-content: space-between
+    }
 }
 
 .social-list, .contacts-list {
@@ -79,14 +82,26 @@
 
 .contacts-list {
     margin: -3rem -3rem 0 0;
+    @include bp($point_2) {
+        margin: -1rem -1rem 0 0;
+    }
     li {
         padding: 3rem 3rem 0 0;
+        @include bp($point_2) {
+            padding: 1rem 1rem 0 0;
+        }
         a {
+            @include bp($point_2) {
+                font-size: 1.2rem;
+            }
             @include flex-start;
             .icon {
                 margin-right: 1rem;
                 width: 3.1rem;
                 height: 3.1rem;
+                @include bp($point_2) {
+                    display: none;
+                }
                 svg {
                     width: 100%;
                     height: 100%;

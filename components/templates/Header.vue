@@ -10,7 +10,7 @@
                 </div>
                 <v-nav class="header-navs" :nav="content"/>
                 <div class="actions">
-                    <v-btn name="Связаться" @click.native="open('form')"/>
+                    <v-btn name="Связаться" @click.native="open('form')" class="callback"/>
                     <nuxt-link to="/favorite" class="hearth-link">
                         <icons icon="mdi:heart"/>
                         <div class="counter" v-if="countFavorite">{{ countFavorite }}</div>
@@ -149,6 +149,12 @@
 
 .header-navs {
     @include bp($point_2) {
+        display: none;
+    }
+}
+
+.callback {
+    @include bp($point_4) {
         display: none;
     }
 }

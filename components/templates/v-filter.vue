@@ -17,10 +17,10 @@
                             <v-input type="number" minilabel="до" v-model="filter.endPrice" :price="true"/>
                         </div>
                     </div>
-                    <div class="filter-col" v-if="selects[1]">
+                    <div class="filter-col max-w-50" v-if="selects[1]">
                         <v-select :option="selects[1]" label="Планировка" id="plan" v-model="filter.plan" :multiple="true"/>
                     </div>
-                    <div class="filter-col max-w-small">
+                    <div class="filter-col max-w-small max-w-50">
                         <v-input type="number" id="house-one" label="ID" v-model="filter.id"/>
                     </div>
                 </div>
@@ -215,5 +215,16 @@
 
 .max-w-small {
     max-width: 11.9rem;
+}
+
+.max-w-50 {
+    :deep(.multiselect) {
+        @include bp($point_4) {
+            min-width: 100%;
+        }
+    }
+    @include bp($point_4) {
+        max-width: 50%;
+    }
 }
 </style>
