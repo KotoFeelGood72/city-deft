@@ -4,12 +4,13 @@
             <div class="articles-main">
                 <section-title title="Новости" class="big"/>
                 <ul class="articles-list grid-3">
-                    <li v-for="(item, i) in articles" :key="'news-item-' + i">
+                    <li v-for="(item, i) in data" :key="'news-item-' + i">
                         <article-card :data="item"/>
                     </li>
                 </ul>
                 <paginate
-                    :page-count="10"
+                    v-if="pages && pages > 1"
+                    :page-count="pages"
                     :page-range="3"
                     v-model="page"
                     :container-class="'global-paginate'"
@@ -29,17 +30,39 @@
         },
         data() {
             return {
+                data: {},
                 page: 1,
-                articles: [
-                    { img: 'https://images.themagger.net/wp-content/uploads/2020/06/sergei-akulich-heLWtuAN3c-unsplash.jpg', link: '/article/article-1', title: 'Сейчас всё чаще звучит шопот бессменных лидеров', txt: 'Как уже неоднократно упомянуто, элементы политического процесса объективно рассмотрены соответствующими инстанциями.' },
-                    { img: 'https://images.themagger.net/wp-content/uploads/2020/06/sergei-akulich-heLWtuAN3c-unsplash.jpg', link: '/article/article-2', title: 'Сейчас всё чаще звучит шопот бессменных лидеров', txt: 'Как уже неоднократно упомянуто, элементы политического процесса объективно рассмотрены соответствующими инстанциями.' },
-                    { img: 'https://images.themagger.net/wp-content/uploads/2020/06/sergei-akulich-heLWtuAN3c-unsplash.jpg', link: '/article/article-3', title: 'Сейчас всё чаще звучит шопот бессменных лидеров', txt: 'Как уже неоднократно упомянуто, элементы политического процесса объективно рассмотрены соответствующими инстанциями.' },
-                    { img: 'https://images.themagger.net/wp-content/uploads/2020/06/sergei-akulich-heLWtuAN3c-unsplash.jpg', link: '/article/article-4', title: 'Сейчас всё чаще звучит шопот бессменных лидеров', txt: 'Как уже неоднократно упомянуто, элементы политического процесса объективно рассмотрены соответствующими инстанциями.' },
-                    { img: 'https://images.themagger.net/wp-content/uploads/2020/06/sergei-akulich-heLWtuAN3c-unsplash.jpg', link: '/article/article-5', title: 'Сейчас всё чаще звучит шопот бессменных лидеров', txt: 'Как уже неоднократно упомянуто, элементы политического процесса объективно рассмотрены соответствующими инстанциями.' },
-                    { img: 'https://images.themagger.net/wp-content/uploads/2020/06/sergei-akulich-heLWtuAN3c-unsplash.jpg', link: '/article/article-6', title: 'Сейчас всё чаще звучит шопот бессменных лидеров', txt: 'Как уже неоднократно упомянуто, элементы политического процесса объективно рассмотрены соответствующими инстанциями.' }
-                ]
+                pages: null,
             }
-        }
+        },
+        methods: {
+            async GetNewsList(page = this.page) {
+                const response = await this.$axios.get(`/api/wp-json/wp/v2/posts`, {
+                    params: {
+                        per_page: 6,
+                        page: page,
+                        categories: 1,
+                        '_embed': 'wp:term'
+                    }
+                });
+                this.pages = parseInt(response.headers['x-wp-totalpages']);
+                this.data = response.data;
+            }
+        },
+        mounted() {
+            this.GetNewsList();
+        },
+        watch: {
+            page(newPage) {
+                this.GetNewsList(newPage);
+            },
+            '$route': {
+                immediate: true,
+                handler() {
+                    this.GetNewsList();
+                }
+            },
+        },
     }
 </script>
 

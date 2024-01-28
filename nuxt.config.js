@@ -57,6 +57,7 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
     '@nuxt/image',
+    'vue-social-sharing/nuxt',
     ["vue-toastification/nuxt", {
       timeout: 2000,
       draggable: false

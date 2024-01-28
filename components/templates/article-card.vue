@@ -1,16 +1,17 @@
 <template>
     <div class="card">
         <div class="card-img">
-            <NuxtImg 
-                :src="data.img"
-                alt=""
+            <NuxtImg
+                v-if="this.img" 
+                :src="this.img.source_url"
+                :alt="this.img.alt_text"
                 loading="lazy"
             />
         </div>
         <div class="card-content">
-            <section-title :title="data.title" class="small" :level="3"/>
-            <p>{{ data.txt }}</p>
-            <nuxt-link :to="data.link">Читать полностью</nuxt-link>
+            <section-title :title="data.title.rendered" class="small" :level="3"/>
+            <div v-html="trimmedText"></div>
+            <nuxt-link :to="data.slug">Читать полностью</nuxt-link>
         </div>
     </div>
 </template>
@@ -18,10 +19,47 @@
 <script>
     import sectionTitle from '../ui-kit/section-title';
     export default {
+        data() {
+            return {
+                img: null,
+            }
+        },
         components: {
             sectionTitle
         },
-        props: ['data']
+        props: ['data'],
+        computed: {
+            trimmedText() {
+                const maxLength = 120; 
+                if(this.data.excerpt.rendered) {
+                    let result = this.data.excerpt.rendered.substring(0, maxLength);
+                    const ellipsisIndex = result.indexOf(' […]');
+                    if (ellipsisIndex !== -1) {
+                        result = result.substring(0, ellipsisIndex);
+                    }
+
+                    if (this.data.excerpt.rendered.length > maxLength) {
+                        result += '…';
+                    }
+        
+                    return result;
+                }
+
+            }
+        },
+        methods: {
+            async getPostImg() {
+                try {
+                    const response = await this.$axios.get(`/api/wp-json/wp/v2/media/${this.data.featured_media}`)
+                    this.img = response.data
+                } catch (error) {
+                    
+                }
+            }
+        },
+        mounted() {
+            this.getPostImg();
+        }
     }
 </script>
 
@@ -54,7 +92,7 @@ img {
         font-family: $font_1;
     }
 
-    p {
+    :deep(p) {
         padding: 2rem 0;
         font-size: 1.4rem;
         position: relative;
