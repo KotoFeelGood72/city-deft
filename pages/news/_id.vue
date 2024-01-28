@@ -30,15 +30,24 @@
             <div class="container">
                 <div class="article-bottom">
                     <p>Понравилась статья - поделись с друзьями</p>
-                        <ShareNetwork
-                            network="Telegram"
-                            :url="'https://citydeft.com/' + url"
-                            :title="shared.og_title"
-                            :description="shared.og_description"
-                        >
-                        Share on Facebook
+                    <ul>
+                        <li v-for="(item, i) in social" :key="'social-shared' + i">
+                            <ShareNetwork
+                                v-if="url"
+                                :network="item.social"
+                                :url="'https://citydeft.com/' + url"
+                                :title="shared.og_title"
+                                :description="shared.og_description"
+                            >
 
-                    </ShareNetwork>
+                            <NuxtImg
+                                :src="`${item.icon}`"
+                                alt=""
+                                loading="lazy"
+                            />
+                        </ShareNetwork>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -52,7 +61,14 @@ export default {
             data: null,
             img: null,
             shared: null,
-            url: null
+            url: null,
+            social: [
+                {social: 'Facebook', icon: 'facebook.svg'},
+                {social: 'Telegram', icon: 'telegram.svg'},
+                {social: 'WhatsApp', icon: 'whatsapp.svg'},
+                {social: 'VK', icon: 'vk.svg'},
+                {social: 'odnoklassniki', icon: 'ok.svg'},
+            ],
         }
     },
     components: {
@@ -151,6 +167,41 @@ export default {
 
 :deep(.wp-block-image) {
     padding: 3rem 0;
+}
+
+.article-bottom {
+    @include flex-space;
+    margin: 4.2rem 0;
+    p {
+        font-size: 2.4rem;
+        font-family: $font_2;
+        font-weight: 500;
+    }
+
+    ul {
+        @include flex-start;
+        flex-wrap: wrap;
+        margin: -1.5rem -1.5rem 0 0;
+        li {
+            padding: 1.5rem 1.5rem 0 0;
+            &:last-child {
+                a {
+                    width: 4.5rem;
+                    height: 4.5rem;
+                }
+            }
+            a {
+                width: 3.6rem;
+                height: 3.6rem;
+                @include flex-center;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    @include flex-center;
+                }
+            }
+        }
+    }
 }
 
 </style>
