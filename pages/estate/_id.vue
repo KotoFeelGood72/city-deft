@@ -67,7 +67,7 @@
         },
         mounted() {
             this.getPageID();
-        }
+        },
     }
 </script>
 

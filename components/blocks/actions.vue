@@ -37,7 +37,7 @@
         computed: {
             // ...mapGetters(['getData']),
             isForm() {
-                if(this.forms && this.getData) {
+                if(this.forms && this.data) {
                     return vForm
                 }
             }

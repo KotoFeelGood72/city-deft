@@ -4,9 +4,11 @@
             <div class="filter__main">
                 <div class="filter-top">
                     <div class="filter-col" v-if="categories">
-                        <v-select :option="categories" label="Тип недвижимости" id="type-estate" v-model="filter.category" :multiple="false" :stateSelected="true"/>
+                        <v-select :option="categories" label="Категория" id="type-estate" v-model="filter.category" :multiple="false" :stateSelected="true"/>
                     </div>
-                    
+                    <div class="filter-col" v-if="selects[7]">
+                        <v-select :option="selects[7]" label="Тип недвижимости" id="types" v-model="filter.types" :multiple="false"/>
+                    </div>
                     <div class="filter-col" v-if="selects[0]">
                         <v-select :option="selects[0]" label="Район" id="type-rayon" v-model="filter.district" :multiple="true"/>
                     </div>
@@ -20,9 +22,9 @@
                     <div class="filter-col max-w-50" v-if="selects[1]">
                         <v-select :option="selects[1]" label="Планировка" id="plan" v-model="filter.plan" :multiple="true"/>
                     </div>
-                    <div class="filter-col max-w-small max-w-50">
+                    <!-- <div class="filter-col max-w-small max-w-50">
                         <v-input type="number" id="house-one" label="ID" v-model="filter.id"/>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="medium" v-if="open">
                     <div class="filter-medium">
@@ -63,7 +65,6 @@
     import vSelect from '../ui-kit/v-select';
     import vInput from '../ui-kit/v-input';
     import vBtn from '../ui-kit/v-btn';
-    import { mapGetters } from 'vuex'
 
 
 
@@ -95,6 +96,7 @@
                     infastructure: null,
                     page: 1,
                     per_page: 6,
+                    types: null,
                 },
             }
         },

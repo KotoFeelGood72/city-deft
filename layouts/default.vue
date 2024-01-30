@@ -4,7 +4,7 @@
         <main class="main">
             <Nuxt/>
         </main>
-        <actions v-if="isForm" :forms="isForm"/>
+        <actions v-if="isForm" :forms="isForm" :data="data"/>
         <transition name="translate">
             <modal-form v-if="getPopup('form')"/>
         </transition>
@@ -30,7 +30,6 @@
         components: { Header, Footer, actions, modalForm, modalBurger, loader },
         data() {
             return {
-                isForms: false,
                 data: null,
                 isLoading: true,
             }

@@ -2,8 +2,8 @@
     <div class="product-card" v-if="data">
         <div class="product-card__img">
             <ul class="product-status__list">
-                <li v-for="(item, i) in data.acf.status" class="product-status__item">
-                    <div>{{ item }}</div>
+                <li v-for="(item, i) in data.acf.status" class="product-status__item" :key="'status-' + i" :class="item.value">
+                    <div>{{ item.label }}</div>
                 </li>
             </ul>
             <nuxt-link :to="`/estate/${data.slug}`">
@@ -97,13 +97,8 @@
         computed: {
             ...mapGetters(['getFavorites']),
             formattedPrice() {
-                let price = this.data.acf.price;
-                if (price.includes('.')) return price;
-                if (price.length > 3) {
-                    return price.slice(0, -3) + '.' + price.slice(-3);
-                }
-                return price;
-            },
+                return Number(this.data.acf.price).toLocaleString('de-DE');
+            }
         }
     }
 </script>
@@ -138,6 +133,33 @@
             font-family: $font_2;
             padding: .7rem 1.5rem;
             color: $dark;
+            
+        }
+        &.yellow {
+            div {
+
+                background-color: $yellow;
+            }
+        }
+        &.red {
+            div {
+
+                background-color: #d32525;
+                color: $white;
+            }
+        }
+        &.blue {
+            div {
+                color: $white;
+                background-color: #06b3f8;
+            }
+        }
+        &.green {
+            div {
+                color: $white;
+                background-color: #07c948;
+
+            }
         }
     }
 }

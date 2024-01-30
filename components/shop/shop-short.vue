@@ -2,7 +2,7 @@
     <div class="short">
         <div class="price">
             <span>Стоимость:</span>
-            <p>{{formattedPrice}}</p>
+            <p>{{ formattedPrice }}</p>
         </div>
         <div class="add-favorite">
             <div class="icon-heart">
@@ -51,18 +51,7 @@
         },
         computed: {
             formattedPrice() {
-                let price = this.info.acf.price;
-
-                // Проверяем, содержит ли строка уже точку
-                if (price.includes('.')) return price;
-
-                // Применяем форматирование, если длина строки больше 3
-                if (price.length > 3) {
-                    return price.slice(0, -3) + '.' + price.slice(-3);
-                }
-
-                // Возвращаем исходную строку, если её длина 3 или меньше
-                return price;
+                return Number(this.info.acf.price).toLocaleString('de-DE');
             }
         }
     }
@@ -126,7 +115,7 @@
 
 .card-info {
     background-color: $gray;
-    padding: 2rem 3.8rem;
+    padding: 2rem 3rem;
     border-radius: 1rem;
 
     ul {
