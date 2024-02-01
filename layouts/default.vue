@@ -15,6 +15,9 @@
         <transition name="translate">
             <loader v-if="isLoading"/>
         </transition>
+        <client-only>
+            <noscript><div><img src="https://mc.yandex.ru/watch/90724957" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        </client-only>
     </div>
 </template>
 

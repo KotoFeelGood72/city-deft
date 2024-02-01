@@ -34,9 +34,9 @@
                     <div class="filter-col" v-if="selects[3]">
                         <v-select :option="selects[3]" label="Площадь" id="place" v-model="filter.place" :multiple="true"/>
                     </div>
-                    <div class="filter-col" v-if="selects[4]">
+                    <!-- <div class="filter-col" v-if="selects[4]">
                         <v-select :option="selects[4]" label="Преимущества" id="adv" v-model="filter.adv" :multiple="true"/>
-                    </div>
+                    </div> -->
                     <div class="filter-col" v-if="selects[5]">
                         <v-select :option="selects[5]" label="Год постройки" id="date" v-model="filter.date" :multiple="true"/>
                     </div>
