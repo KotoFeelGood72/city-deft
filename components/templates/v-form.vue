@@ -56,6 +56,10 @@
     max-width: 32.7rem;
     text-align: center;
     margin-left: 3.9rem;
+    @include bp($point_2) {
+        margin-left: 0;
+        max-width: 100%;
+    }
     .input {
         margin-bottom: 2.1rem;
     }

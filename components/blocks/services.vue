@@ -1,5 +1,5 @@
 <template>
-    <div class="services">
+    <div class="services" v-if="data">
         <div class="container">
             <div class="services_main">
                 <section-title :title="data['all-service'].title" :level="3" class="big"/>
@@ -48,12 +48,8 @@
 <script>
 import icons from '../icons/icons.vue';
 import sectionTitle from '../ui-kit/section-title'
-import { mapGetters } from 'vuex'
     export default {
-        components: {
-            sectionTitle,
-            icons
-        },
+        components: { sectionTitle, icons },
         props: ['data'],
     }
 </script>

@@ -26,12 +26,26 @@
     align-content: flex-start;
     padding: 15rem 0;
 
+    @include bp($point_2) {
+        flex-direction: column;
+        // align-content: flex-start;
+        text-align: center;
+        padding: 5rem 0;
+    }
+
 
     h1 {
         font-size: 15rem;
         margin-top: -11rem;
         margin-right: 6.2rem;
         position: relative;
+        @include bp($point_2) {
+            text-align: left;
+            margin: 0 0 2rem 0;
+        }
+        @include bp($point_5) {
+            font-size: 10rem;
+        }
         &:before {
             content: 'код ошибки 404';
             font-size: 2rem;
@@ -46,6 +60,10 @@
     h2 {
         font-size: 3.6rem;
         margin-bottom: 6rem;
+        @include bp($point_5) {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
     }
 
     a {

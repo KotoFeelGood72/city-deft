@@ -33,7 +33,6 @@
 
 <script>
     import vColNav from '../ui-kit/v-col-nav';
-    // import { mapGetters } from 'vuex'
     import icons from '../icons/icons.vue';
     export default {
         components: { vColNav, icons },
@@ -52,6 +51,9 @@
 
 .footer_main {
     padding: 13rem 0 5rem 0;
+    @include bp($point_2) {
+        padding: 9rem 0 5rem 0;
+    }
 }
 
 .logo {
