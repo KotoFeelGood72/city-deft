@@ -48,7 +48,6 @@ export default {
     { src: '@/plugins/vue-js-paginate.js', ssr: false },
     { src: '@/plugins/fancybox.js', ssr: false },
     { src: '@/plugins/persistedState.js', ssr: false },
-    { src: '@/plugins/yandex-metrika.js', mode: 'client' }
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

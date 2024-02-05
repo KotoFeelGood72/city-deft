@@ -15,9 +15,7 @@
         <transition name="translate">
             <loader v-if="isLoading"/>
         </transition>
-        <client-only>
-            <noscript><div><img src="https://mc.yandex.ru/watch/90724957" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-        </client-only>
+        <yandex/>
     </div>
 </template>
 
@@ -28,9 +26,10 @@
     import modalForm from '../modal/modal-form';
     import modalBurger from '../modal/modal-burger';
     import loader from '../components/ui-kit/loader';
+    import yandex from '@/components/templates/yandex'
     import { mapGetters } from 'vuex'
     export default {
-        components: { Header, Footer, actions, modalForm, modalBurger, loader },
+        components: { Header, Footer, actions, modalForm, modalBurger, loader, yandex},
         data() {
             return {
                 data: null,
