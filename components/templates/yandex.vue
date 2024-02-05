@@ -5,6 +5,8 @@
 </template>
 
 <script>
+if(process.client) {
+
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -17,4 +19,5 @@
             accurateTrackBounce:true,
             webvisor:true
     });
+}
 </script>
