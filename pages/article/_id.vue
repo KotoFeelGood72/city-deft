@@ -108,9 +108,28 @@ export default {
 
 <style lang="scss" scoped>
 
-.single-title {
-    
+
+
+
+.article-content {
+  :deep(ul) {
+    font-size: 2.2rem;
+    padding-left: 2rem;
+    @include bp($point_2) {
+      font-size: 1.6rem;
+    }
+  }
 }
+.article-content {
+  :deep(li) {
+    padding: .7rem 0;
+    position: relative;
+    &:before {
+      content: '- ';
+    }
+  }
+}
+
 
 .article {
     padding-top: 6rem;
@@ -121,15 +140,20 @@ export default {
 
 .article-head {
     margin-bottom: 4rem;
-    @include flex-center;
-    position: relative;
+    // @include flex-center;
+    // position: relative;
+
+    @include bp($point_2) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .back-link {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
+  margin-bottom: 3rem;
+  @include bp($point_2) {
+    margin-bottom: 1.5rem;
+  }
     a {
         @include flex-start;
         background-color: $yellow;
@@ -138,6 +162,10 @@ export default {
         display: inline-flex;
         font-size: 1.8rem;
         font-family: $font_2;
+        @include bp($point_2) {
+            font-size: 1.4rem;
+            padding: .5rem 1rem;
+        }
         p {
             margin-bottom: -0.3rem;
         }
@@ -148,6 +176,9 @@ export default {
     width: 100%;
     height: auto;
     margin-bottom: 7rem;
+    @include bp($point_2) {
+        margin-bottom: 3rem;
+    }
     img {
         width: 100%;
         object-fit: cover;
@@ -159,6 +190,9 @@ export default {
 .article-content {
     :deep(p, ul, ol, li, strong, a) {
         font-size: 2.2rem;
+        @include bp($point_2) {
+            font-size: 1.6rem;
+        }
     }
 }
 
@@ -166,19 +200,39 @@ export default {
     font-size: 3.2rem;
     color: rgba(85, 85, 85, 1);
     padding: 3rem 2rem 3rem 7.8rem;
+    @include bp($point_2) {
+        font-size: 2.2rem;
+        padding: 3rem 0;
+    }
 }
 
 :deep(.wp-block-image) {
     padding: 3rem 0;
+    img {
+        @include bp($point_2) {
+            width: 100%;
+            height: auto;
+            object-fit: contain
+        }
+    }
 }
 
 .article-bottom {
     @include flex-space;
     margin: 4.2rem 0;
+    @include bp($point_2) {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 2rem 0 4rem 0;
+    }
     p {
         font-size: 2.4rem;
         font-family: $font_2;
         font-weight: 500;
+        @include bp($point_2) {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+        }
     }
 
     ul {
@@ -191,12 +245,20 @@ export default {
                 a {
                     width: 4.5rem;
                     height: 4.5rem;
+                    @include bp($point_2) {
+                        width: 3.2rem;
+                        height: 3.2rem;
+                    }
                 }
             }
             a {
                 width: 3.6rem;
                 height: 3.6rem;
                 @include flex-center;
+                @include bp($point_2) {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
                 img {
                     width: 100%;
                     height: 100%;

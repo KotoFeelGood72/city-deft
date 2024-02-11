@@ -1,6 +1,6 @@
 <template>
     <div class="single-services" v-if="data">
-        <hero :content="data" :img="img"/>
+        <hero :content="data" :img="img" :container="true"/>
         <blockTxt :data="data.content.rendered"/>
     </div>
 </template>

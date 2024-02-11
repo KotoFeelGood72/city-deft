@@ -108,9 +108,6 @@ export default {
 
 <style lang="scss" scoped>
 
-.single-title {
-    
-}
 
 .article {
     padding-top: 6rem;

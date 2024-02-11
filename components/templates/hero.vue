@@ -1,14 +1,14 @@
 <template>
     <div class="template-hero" v-if="content">
-        <div class="container">
+        <div :class="{'container': container}">
             <div class="templateHero__main">
                 <div class="templateHero__content">
-                    <section-title :title="content.title.rendered" class="big"/>
+                    <section-title :title="content.title ? content.title.rendered : ''" class="big"/>
                     <div class="templateHero-content__txt" :class="{'small': small}">
-                        <div v-if="content.excerpt" v-html="content.excerpt.rendered"></div>
+                        <div v-if="content.excerpt" v-html="content.excerpt.rendered || content.excerpt"></div>
                     </div>
                 </div>
-                <nuxt-img v-if="img" :src="img.source_url"/>
+                <nuxt-img v-if="img" :src="img.source_url || img"/>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
         components: {
             sectionTitle
         },
-        props: ['content', 'img', 'small'],
+        props: ['content', 'img', 'small', 'container'],
     }
 </script>
 

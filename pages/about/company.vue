@@ -1,6 +1,6 @@
 <template>
     <div class="about" v-if="data && contents">
-        <hero :content="data" :img="img" :small="true"/>
+        <hero :content="data" :img="img" :small="true" :container="true"/>
         <services :data="contents" class="mb8"/>
         <partners :title="contents.partners.title" :partners_list="contents.partners.list"/>
         <documents :title="contents.documents.title" :documents_list="contents.documents.list"/>
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-    import hero from '../components/templates/hero';
-    import blockTxt from '../components/templates/block-txt';
-    import services from '../components/blocks/services';
-    import partners from '../components/blocks/partners';
-    import documents from '../components/blocks/documents';
-    import questions from '../components/blocks/questions';
+    import hero from '@/components/templates/hero';
+    import blockTxt from '@/components/templates/block-txt';
+    import services from '@/components/blocks/services';
+    import partners from '@/components/blocks/partners';
+    import documents from '@/components/blocks/documents';
+    import questions from '@/components/blocks/questions';
     export default {
         data() {
             return {

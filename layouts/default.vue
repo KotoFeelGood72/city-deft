@@ -38,7 +38,7 @@
         },
         computed: {
             isForm() {
-                const pages = ['/', '/about'];
+                const pages = ['/', '/about', '/about/'];
                 return !pages.includes(this.$route.path);
             },
             ...mapGetters(['getPopup']),
