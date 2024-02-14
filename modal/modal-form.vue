@@ -23,7 +23,7 @@
                     </div>
                     <div class="form_start__mail">
                         <a href="#">info@citydeft.com</a>
-                    </div>    
+                    </div>
                 </div>
                 <div class="form_start__actions">
                     <p>Или оставьте свои контактные данные и мы свяжемся с вами</p>
@@ -87,7 +87,7 @@
     width: 100%;
     height: 100%;
     @include flex-center;
-    z-index: 11;
+    z-index: 999;
 
     .form__main {
         max-width: 72.9rem;

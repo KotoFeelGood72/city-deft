@@ -12,7 +12,7 @@
         </div>
         <div class="group-btn">
             <v-btn name="Оставить заявку" @click.native="open('form')"/>
-            <v-btn name="Онлайн-просмотр" class="border"/>
+            <v-btn name="Онлайн-просмотр" class="border" @click.native="open('form')"/>
         </div>
         <div class="card-info">
             <ul>
@@ -60,7 +60,7 @@
 <style lang="scss" scoped>
 
 .short {
-    
+
 }
 
 .price {
@@ -106,7 +106,7 @@
 .group-btn {
     margin-bottom: 1.8rem;
     .button {
-        width: 100%;    
+        width: 100%;
         &:first-child {
             margin-bottom: 1.4rem;
         }
