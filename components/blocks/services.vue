@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <div class="column-img">
-                            <NuxtImg 
+                            <NuxtImg
                                 :src="data['all-service'].img"
                                 alt=""
                                 loading="lazy"
@@ -95,16 +95,27 @@ import sectionTitle from '../ui-kit/section-title'
 }
 
 .services__list {
+  &:first-child {
+    @include bp($point_4) {
+      margin-bottom: 4rem;
+    }
+  }
     li {
         @include flex-start;
         align-items: flex-start;
         @include bp($point_2) {
             min-height: 13.5rem;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         &:not(:last-child) {
             margin-bottom: 7rem;
             @include bp($point_2) {
                 margin-bottom: 4rem;
+            }
+            @include bp($point_6) {
+                margin-bottom: 2rem;
             }
         }
 
@@ -112,9 +123,15 @@ import sectionTitle from '../ui-kit/section-title'
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-        }
-        span {
+            @include bp($point_2) {
+              font-size: 1.8rem;
+            }
+          }
+          span {
             font-size: 1.8rem;
+            @include bp($point_2) {
+              font-size: 1.4rem;
+            }
         }
 
         .icon {
@@ -125,6 +142,9 @@ import sectionTitle from '../ui-kit/section-title'
             position: relative;
             color: $orange;
             margin-right: 1.2rem;
+            @include bp($point_2) {
+              margin-bottom: 2rem;
+            }
             &:before {
                 border-radius: 0.5rem;
                 position: absolute;

@@ -43,5 +43,15 @@
     margin: 4rem 0 10rem 0;
     text-align: center;
   }
+  padding-bottom: 8rem;
+}
+
+.vacancy__list {
+  li {
+    &:not(:last-child) {
+      margin-bottom: 12rem;
+    }
+    margin-bottom: 4rem;
+  }
 }
 </style>

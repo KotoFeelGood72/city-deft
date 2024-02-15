@@ -35,6 +35,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
     grid-gap: 3rem 10rem;
+    @include bp($point_2) {
+      grid-template-columns: repeat(auto-fill, minmax(46%, 1fr));
+      grid-gap: 2rem;
+    }
     li {
         box-shadow: 0px 10.424965858459473px 10.424965858459473px 0px #003F800D;
         border-radius: 1rem;

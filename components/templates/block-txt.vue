@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    export default {  
+    export default {
         props: ['data'],
     }
 </script>
@@ -22,6 +22,10 @@
         font-size: 2.2rem;
         font-family: $font_2;
         line-height: 3.2rem;
+        @include bp($point_2) {
+          font-size: 1.6rem;
+          line-height: 2.8rem;
+        }
     }
 
     :deep(.wp-block-heading) {
@@ -29,11 +33,18 @@
         font-family: $font_2;
         color: #555555;
         padding: 2rem;
+        @include bp($point_2) {
+          font-size: 2.6rem;
+          padding: 1rem 0;
+        }
     }
 
     :deep(ul) {
         padding-left: 2rem;
         font-size: 2.2rem;
+        @include bp($point_2) {
+          font-size: 1.6rem;
+        }
     }
 
     :deep(li) {
@@ -41,6 +52,11 @@
         padding-left: 3rem;
         margin-bottom: 2rem;
         font-family: $font_2;
+        @include bp($point_2) {
+          font-size: 1.6rem;
+          padding-left: 1.5rem;
+          margin-bottom: 1rem;
+        }
         &:before {
             position: absolute;
             top: 0rem;

@@ -9,7 +9,7 @@
             :src="img.source_url"
           />
         </div>
-        <ul v-if="data && data.acf">
+        <ul v-if="data && data.acf" class="team-list">
           <li v-for="(item, i) in data.acf.team" :key="'team-item-' + i">
             <hero :img="item.img" :content="item"/>
           </li>
@@ -54,6 +54,59 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.team {
+  padding: 6rem 0;
+  @include bp($point_2) {
+    padding: 3rem 0;
+  }
+  .big {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+}
 
+.team_main__img {
+  margin-bottom: 7rem;
+  @include bp($point_4) {
+    margin-bottom: 4rem;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.team-list {
+  li {
+    @include bp($point_4) {
+      position: relative;
+    }
+    :deep(.templateHero__content::before) {
+        width: 103%;
+        left: -.3rem;
+      }
+    :deep(.templateHero__main) {
+      @include bp($point_4) {
+        padding: 2rem;
+      }
+    }
+    :deep(.templateHero__main img) {
+      margin-left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    :deep(.template-hero) {
+      border: none;
+    }
+    &:nth-child(2n + 2) {
+
+      :deep(.templateHero__content) {
+        order: 1;
+      }
+      // :deep(.template-hero) {
+      // }
+    }
+  }
+}
 </style>

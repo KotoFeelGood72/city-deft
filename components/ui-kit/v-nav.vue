@@ -2,12 +2,18 @@
     <nav class="nav">
         <ul class="nav-list" v-if="nav">
             <li v-for="(item, i) in nav['header-nav']" :key="'nav-' + i" class="nav_item__parent" @mouseover="activeIndex = i" @mouseleave="activeIndex = null">
-                <nuxt-link :to="item.link">
+                <nuxt-link :to="item.link" v-if="item.link">
                     <p>{{ item.name }}</p>
                     <div class="icon" v-if="item.submenu && item.on_submenu">
                         <icons icon="fluent:triangle-down-16-filled"/>
                     </div>
                 </nuxt-link>
+                <div class="nolink" v-else>
+                    <p>{{ item.name }}</p>
+                    <div class="icon" v-if="item.submenu && item.on_submenu">
+                        <icons icon="fluent:triangle-down-16-filled"/>
+                    </div>
+                </div>
                 <transition name="translate">
                     <ul class="sub-menu" v-if="activeIndex === i && item.submenu && item.on_submenu">
                         <li v-for="(subitem, i) in item.submenu" :key="'nav-' + i" class="nav_item__submenu">
@@ -60,11 +66,12 @@
                 top: .5rem;
             }
         }
-        &>a {
+        &>a, .nolink {
             position: relative;
             padding-right: 2rem;
             @include flex-start;
             margin-bottom: 1rem;
+            cursor: pointer;
         }
 
         ul {

@@ -24,7 +24,6 @@
 .card {
   @include flex-start;
   background-color: #D9D9D9;
-  margin-bottom: 12rem;
   padding: 1.5rem 5rem 1.5rem 3.6rem;
   border-radius: .6rem;
 
@@ -73,6 +72,28 @@
   }
   border-bottom: .1rem solid $white;
   margin-bottom: 2.5rem;
+}
+
+.card-txt {
+  :deep(ul) {
+    padding-left: 2rem;
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+  :deep(li) {
+    list-style: disc;
+  }
+  :deep(p) {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+  :deep(ol) {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
 }
 
 </style>

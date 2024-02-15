@@ -56,6 +56,9 @@
 
 .mb8 {
     margin-bottom: 8rem;
+    @include bp($point_4) {
+      margin-bottom: 6rem;
+    }
 }
 
 .home-questions {

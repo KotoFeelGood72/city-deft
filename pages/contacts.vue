@@ -1,5 +1,5 @@
 <template>
-  <div class="contacts">
+  <div class="contacts" v-if="data">
     <div class="container">
       <sectionTitle title="Контакты" class="big center"/>
       <div class="contacts_main">
@@ -11,7 +11,7 @@
             </li>
             <li>
               <span>Телефон:</span>
-              <a href="#">+90 507 706 00 07</a>
+              <a :href="`tel:${data['contacts'].phone}`">{{ data['contacts'].phone }}</a>
               <p>На связи 24/7</p>
               <ul class="social">
                 <li></li>
@@ -19,11 +19,21 @@
             </li>
             <li>
               <span>Электронная почта:</span>
-              <a href="#">info@citydeft.com</a>
+              <a :href="`mailto:${data['contacts'].mail}`">{{ data['contacts'].mail }}</a>
             </li>
             <li>
               <span>Наш офис:</span>
               <p>Saray Mah. Oral Cad. 25/B Öztürk 2 Apt. Alanya / Antalya</p>
+            </li>
+            <li>
+              <span>Мы в социальных сетях:</span>
+              <ul class="contacts-social">
+                  <li v-for="(item, i) in data['contacts'].social" :key="'social-footer-' + i">
+                      <a target="_blank" :href="item.link">
+                          <icons v-if="item.icon" :icon="item.icon"/>
+                      </a>
+                  </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -37,13 +47,86 @@
 
 <script>
 import sectionTitle from '../components/ui-kit/section-title.vue';
+import icons from '../components/icons/icons.vue';
   export default {
-    components: {
-      sectionTitle
+    components: { sectionTitle, icons },
+    data() {
+      return {
+        data: null
+      }
+    },
+    methods: {
+      async getContent() {
+          const res = await this.$axios.$get('/api/wp-json/acf/v3/options/options');
+          this.data = res.acf
+      }
+    },
+    mounted() {
+      this.getContent();
     }
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
+.contacts {
+  padding: 6rem 0;
+  .big {
+    margin-bottom: 6rem;
+  }
+}
+.contacts_main {
+  @include flex-space;
+  flex-wrap: wrap;
+  margin: -3rem -10rem 0 0;
+  &>div {
+    padding: 3rem 10rem 0 0;
+  }
+}
+
+.contacts__info {
+  span {
+    font-size: 2.2rem;
+    color: $dark-light;
+    font-family: $font_2;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  p, a {
+    font-size: 1.8rem;
+    font-family: $font_2;
+    display: block;
+  }
+  a {
+    margin-bottom: 0.5rem;
+  }
+
+  &>ul {
+    &>li {
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+}
+
+.contacts-social {
+  @include flex-start;
+  flex-wrap: wrap;
+  margin: -2rem -2rem 0 0;
+  li {
+    padding: 2rem 2rem 0 0;
+    a {
+      width: 4rem;
+      height: 4rem;
+      @include flex-center;
+      background-color: #dddddd;
+      border-radius: 0.5rem;
+      &:hover {
+        background-color: #b3b3b3;
+      }
+    }
+  }
+}
 </style>
