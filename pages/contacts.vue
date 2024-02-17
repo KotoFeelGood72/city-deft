@@ -38,7 +38,7 @@
           </ul>
         </div>
         <div class="contacts__map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3205.1453456787017!2d31.986186191973747!3d36.55060826481347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dca3954b67a575%3A0x7bf2e9fe1bf2662b!2sDeft%20Group!5e0!3m2!1sru!2sru!4v1707590843049!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3205.1453456787017!2d31.986186191973747!3d36.55060826481347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dca3954b67a575%3A0x7bf2e9fe1bf2662b!2sDeft%20Group!5e0!3m2!1sru!2sru!4v1707590843049!5m2!1sru!2sru" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
@@ -71,17 +71,25 @@ import icons from '../components/icons/icons.vue';
 
 .contacts {
   padding: 6rem 0;
+  @include bp($point_2) {
+    padding: 2rem 0 4rem 0;
+  }
   .big {
     margin-bottom: 6rem;
+    @include bp($point_2) {
+      margin-bottom: 4rem;
+    }
   }
 }
 .contacts_main {
-  @include flex-space;
-  flex-wrap: wrap;
-  margin: -3rem -10rem 0 0;
-  &>div {
-    padding: 3rem 10rem 0 0;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+  grid-gap: 6rem
+}
+
+
+.contacts__map {
+  width: 100%;
 }
 
 .contacts__info {

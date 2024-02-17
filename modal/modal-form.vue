@@ -10,19 +10,19 @@
                 <p>Можно любым удобным способом:</p>
                 <div class="form_start__contacts">
                     <div class="form_start__num">
-                        <a href="#">+90 507 706 00 07</a>
+                        <a href="tel:+905077060007" target="_blank">+90 507 706 00 07</a>
                     </div>
                     <div>
                         <ul>
                             <li v-for="(item, i) in social" :key="'social-' + i">
-                                <a :href="item.link">
+                                <a :href="item.link" target="_blank">
                                     <icons :icon="item.icon"/>
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div class="form_start__mail">
-                        <a href="#">info@citydeft.com</a>
+                        <a href="mailto:Customer.citydeft@gmail.com" target="_blank">customer.citydeft@gmail.com</a>
                     </div>
                 </div>
                 <div class="form_start__actions">
@@ -47,8 +47,8 @@
         data() {
             return {
                 social: [
-                    { icon: 'ic:baseline-whatsapp', link: '/' },
-                    { icon: 'file-icons:telegram', link: '/' },
+                    { icon: 'ic:baseline-whatsapp', link: 'https://api.whatsapp.com/send/?phone=905077060007&text&type=phone_number&app_absent=0' },
+                    { icon: 'file-icons:telegram', link: 'https://t.me/DEFT_GROUP_turkey' },
                 ],
                 form: {
                     btnClass: 'gray rounded-btn',

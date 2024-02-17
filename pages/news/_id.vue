@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="article-head">
                     <div class="back-link">
-                        <nuxt-link to="/">
+                        <nuxt-link to="/news/">
                             <icons icon="radix-icons:chevron-left"/>
                             <p>Читать другую статью</p>
                         </nuxt-link>
@@ -118,8 +118,8 @@ export default {
 
 .article-head {
     margin-bottom: 4rem;
-    @include flex-center;
-    position: relative;
+    // @include flex-center;
+    // position: relative;
 
     @include bp($point_2) {
         flex-direction: column;
@@ -128,15 +128,10 @@ export default {
 }
 
 .back-link {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    @include bp($point_2) {
-        position: static;
-        transform: none;
-        margin-bottom: 2rem;
-    }
+  margin-bottom: 3rem;
+  @include bp($point_2) {
+    margin-bottom: 1.5rem;
+  }
     a {
         @include flex-start;
         background-color: $yellow;

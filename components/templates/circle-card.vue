@@ -29,6 +29,11 @@
 
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: rgb(217, 217, 217);
+
+  @include bp($point_2) {
+    flex-direction: column;
+    padding: 3rem 2rem;
+  }
 }
 
 .card-img {
@@ -40,6 +45,13 @@
   margin-top: -7.5rem;
   margin-bottom: 6.2rem;
   z-index: 2;
+
+  @include bp($point_2) {
+    min-width: auto;
+    width: 20rem;
+    height: 20rem;
+    margin: 0 auto 3rem auto;
+  }
   &:before {
     position: absolute;
     top: 50%;
@@ -63,12 +75,18 @@
 .card-content {
   flex-grow: 1;
   font-size: 1.8rem;
+  @include bp($point_2) {
+    font-size: 1.4rem;
+  }
 }
 
 .card-title {
   h3 {
     font-size: 2rem;
     padding-bottom: 1.2rem;
+    @include bp($point_2) {
+      font-size: 1.6rem;
+    }
   }
   border-bottom: .1rem solid $white;
   margin-bottom: 2.5rem;

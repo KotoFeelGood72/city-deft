@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="article-head">
                     <div class="back-link">
-                        <nuxt-link to="/">
+                        <nuxt-link to="/article/">
                             <icons icon="radix-icons:chevron-left"/>
                             <p>Читать другую статью</p>
                         </nuxt-link>

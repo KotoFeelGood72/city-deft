@@ -4,15 +4,15 @@
             <span>Стоимость:</span>
             <p>{{ formattedPrice }}</p>
         </div>
-        <div class="add-favorite">
-            <div class="icon-heart">
+        <div class="add-favorite" @click="addToFavorites()">
+          <div class="icon-heart" :style="{ color: isFavorites ? '#FE753F' : '' }">
                 <icons icon="mdi:heart"/>
             </div>
-            <p>Добавить в избранное</p>
+            <p>{{ isFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}}</p>
         </div>
         <div class="group-btn">
-            <v-btn name="Оставить заявку" @click.native="open('form')"/>
-            <v-btn name="Онлайн-просмотр" class="border" @click.native="open('form')"/>
+            <v-btn :name="isStatus ? 'Оставить заявку' : 'Продано'" @click.native="isStatus ? open('form') : ''" :class="{disabled: !isStatus}" :disabled="!isStatus"/>
+            <v-btn name="Подобрать другой вариант" class="border owner" @click.native="open('form')"/>
         </div>
         <div class="card-info">
             <ul>
@@ -36,26 +36,65 @@
 </template>
 
 <script>
-    import icons from '@/components/icons/icons.vue';
-    import vBtn from '../ui-kit/v-btn'
-    export default {
-        components: {
-            vBtn,
-            icons
+import icons from '@/components/icons/icons.vue';
+import vBtn from '../ui-kit/v-btn';
+import { mapGetters } from 'vuex';
+
+export default {
+    components: {
+        vBtn,
+        icons
+    },
+    props: ['info'],
+    data() {
+      return {
+        isFavorites: false,
+      }
+    },
+    computed: {
+        ...mapGetters(['getFavorites']), // Убедитесь, что getFavorites возвращает массив
+        formattedPrice() {
+            return Number(this.info.acf.price).toLocaleString('de-DE');
         },
-        props: ['info'],
-        methods: {
-            open(modal) {
-                this.$store.commit('openPopup', modal)
-            },
+        isStatus() {
+          if (this.info.acf && Array.isArray(this.info.acf.status)) {
+            // Используем метод some для проверки, есть ли в массиве статус с label "продано"
+            return this.info.acf.status.some(s => s.label === 'продано');
+          }
+          return false; // Возвращаем false, если статусов нет или они не соответствуют условию
+        }
+
+    },
+    methods: {
+        open(modal) {
+            this.$store.commit('openPopup', modal);
         },
-        computed: {
-            formattedPrice() {
-                return Number(this.info.acf.price).toLocaleString('de-DE');
+        checkFavorite() {
+            // Проверяем, находится ли товар в списке избранных
+            const isFavorite = this.getFavorites.some(p => p.id === this.info.id);
+            this.isFavorites = isFavorite; // Устанавливаем начальное состояние
+        },
+        addToFavorites() {
+            // Убедитесь, что getFavorites всегда возвращает массив
+            const isFavorite = this.getFavorites.some(p => p.id === this.info.id);
+
+            if (isFavorite) {
+                this.$store.dispatch('removeFromFavorites', this.info.id);
+                this.$toast('Объект удален из избранного', {type: 'error'});
+                this.isFavorites = false; // Обновляем состояние
+            } else {
+                this.$store.dispatch('addToFavorites', this.info);
+                this.$toast('Успешно добавлено в избранное', {type: 'success'});
+                this.isFavorites = true; // Обновляем состояние
             }
         }
-    }
+    },
+    mounted() {
+        this.checkFavorite();
+    },
+}
 </script>
+
 
 <style lang="scss" scoped>
 
@@ -140,5 +179,14 @@
 
 .short-label {
     margin-right: 0.5rem;
+}
+
+.owner {
+  padding: 1.1rem 2.5rem;
+}
+
+.disabled {
+  // pointer-events: none;
+  cursor: not-allowed;
 }
 </style>

@@ -43,45 +43,34 @@
           closeModal(modal) {
                 this.$store.commit('openPopup', modal)
             },
-    sendForm() {
-        this.$v.form.$touch();
-        if (this.$v.form.$invalid) {
-            this.$toast('Заполните обязательные поля', { type: 'error' });
-        } else {
-            // Подготовка данных формы к отправке
-            const formData = {
-                name: this.form.name,
-                tel: this.form.tel,
-            };
+            sendForm() {
+                this.$v.form.$touch();
+                if (this.$v.form.$invalid) {
+                    this.$toast('Заполните обязательные поля', { type: 'error' });
+                } else {
+                    // Подготовка данных формы к отправке
+                    const formData = {
+                        name: this.form.name,
+                        tel: this.form.tel,
+                    };
 
-            // Отправка данных формы на сервер
-            fetch('api/wp-json/form/v1/submit-form/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
+                    // Отправка данных формы на сервер используя this.$axios
+                    this.$axios.post('api/wp-json/form/v1/submit-form/', formData)
+                    .then(response => {
+                        this.$toast('Форма успешно отправлена', { type: 'success' });
+                        setTimeout(() => {
+                          this.form.name = '';
+                          this.form.tel = '';
+                          this.closeModal('form');
+                        }, 500);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        this.$toast('Ошибка при отправке формы', { type: 'error' });
+                    });
                 }
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                this.$toast('Форма успешно отправлена', { type: 'success' });
-                setTimeout(() => {
-                  this.form.name = '';
-                  this.form.tel = '';
-                  this.closeModal('form')
-                }, 500)
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                this.$toast('Ошибка при отправке формы', { type: 'error' });
-            });
-        }
-    }
+            }
+
 }
 
     }

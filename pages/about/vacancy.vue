@@ -46,6 +46,9 @@
   .big {
     margin: 4rem 0 10rem 0;
     text-align: center;
+    @include bp($point_2) {
+      margin: 2rem 0 4rem 0;
+    }
   }
   padding-bottom: 8rem;
 }
@@ -53,6 +56,10 @@
 .vacancy-notice {
   font-size: 2.2rem;
   font-weight: 500;
+  @include bp($point_2) {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
   a {
     font-weight: 600;
   }
@@ -62,6 +69,9 @@
   li {
     &:not(:last-child) {
       margin-bottom: 12rem;
+      @include bp($point_2) {
+        margin-bottom: 4rem;
+      }
     }
     margin-bottom: 4rem;
   }
