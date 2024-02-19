@@ -1,6 +1,6 @@
 <template>
     <div class="about" v-if="data && contents">
-        <hero :content="data" :img="img" :small="true" :container="true"/>
+        <hero :content="data" :img="img" :small="true" classes="container"/>
         <services :data="contents" class="mb8"/>
         <partners :title="contents.partners.title" :partners_list="contents.partners.list"/>
         <documents :title="contents.documents.title" :documents_list="contents.documents.list"/>

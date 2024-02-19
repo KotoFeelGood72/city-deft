@@ -1,6 +1,6 @@
 <template>
     <div class="template-hero" v-if="content">
-        <div :class="{'container': container}">
+        <div :class="[{'container': container}, classes]">
             <div class="templateHero__main">
                 <div class="templateHero__content">
                     <section-title v-if="content.title" :title="content.title ? content.title.rendered : ''" class="big"/>
@@ -20,7 +20,7 @@
         components: {
             sectionTitle
         },
-        props: ['content', 'img', 'small', 'container'],
+        props: ['content', 'img', 'small', 'container', 'classes'],
     }
 </script>
 
