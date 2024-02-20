@@ -11,7 +11,7 @@
             <p>{{ isFavorites ? 'Удалить из избранного' : 'Добавить в избранное'}}</p>
         </div>
         <div class="group-btn">
-            <v-btn :name="isStatus ? 'Оставить заявку' : 'Продано'" @click.native="isStatus ? open('form') : ''" :class="{disabled: !isStatus}" :disabled="!isStatus"/>
+            <v-btn :name="!isStatus ? 'Оставить заявку' : 'Продано'" @click.native="!isStatus ? open('form') : ''" :class="{disabled: isStatus}" :disabled="isStatus"/>
             <v-btn name="Подобрать другой вариант" class="border owner" @click.native="open('form')"/>
         </div>
         <div class="card-info">
@@ -57,11 +57,10 @@ export default {
             return Number(this.info.acf.price).toLocaleString('de-DE');
         },
         isStatus() {
-          if (this.info.acf && Array.isArray(this.info.acf.status)) {
-            // Используем метод some для проверки, есть ли в массиве статус с label "продано"
-            return this.info.acf.status.some(s => s.label === 'продано');
+          if (this.info.acf || Array.isArray(this.info.acf.status)) {
+            return this.info.acf.status.some(s => s.label === 'Продано');
           }
-          return false; // Возвращаем false, если статусов нет или они не соответствуют условию
+          return false;
         }
 
     },

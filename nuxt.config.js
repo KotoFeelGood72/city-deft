@@ -37,7 +37,7 @@ export default {
   },
 
   proxy: {
-    '/api/': { 
+    '/api/': {
       target: "https://api.citydeft.com/",
       pathRewrite: {'^/api/': ''}
     }

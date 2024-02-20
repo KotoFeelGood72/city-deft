@@ -44,32 +44,36 @@
                 this.$store.commit('openPopup', modal)
             },
             sendForm() {
-                this.$v.form.$touch();
-                if (this.$v.form.$invalid) {
-                    this.$toast('Заполните обязательные поля', { type: 'error' });
-                } else {
-                    // Подготовка данных формы к отправке
-                    const formData = {
-                        name: this.form.name,
-                        tel: this.form.tel,
-                    };
+        this.$v.form.$touch();
+        if (this.$v.form.$invalid) {
+            this.$toast('Заполните обязательные поля', { type: 'error' });
+        } else {
+            // Подготовка данных формы к отправке
+            const formData = {
+                name: this.form.name,
+                tel: this.form.tel,
+            };
 
-                    // Отправка данных формы на сервер используя this.$axios
-                    this.$axios.post('api/wp-json/form/v1/submit-form/', formData)
-                    .then(response => {
-                        this.$toast('Форма успешно отправлена', { type: 'success' });
-                        setTimeout(() => {
-                          this.form.name = '';
-                          this.form.tel = '';
-                          this.closeModal('form');
-                        }, 500);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                        this.$toast('Ошибка при отправке формы', { type: 'error' });
-                    });
-                }
-            }
+            // Отправка данных формы на сервер используя this.$axios
+            this.$axios.post('api/wp-json/form/v1/submit-form/', formData)
+            .then(response => {
+                this.$toast('Форма успешно отправлена', { type: 'success' });
+                setTimeout(() => {
+                    this.form.name = '';
+                    this.form.tel = '';
+                    this.$v.$reset();
+                    // Проверяем, активно ли модальное окно перед его закрытием
+                    if (this.$store.state.modal.form) {
+                        this.closeModal('form');
+                    }
+                }, 500);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                this.$toast('Ошибка при отправке формы', { type: 'error' });
+            });
+        }
+    }
 
 }
 

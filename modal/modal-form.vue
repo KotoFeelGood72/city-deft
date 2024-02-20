@@ -69,6 +69,9 @@
 
 .big-xl {
     color: $white;
+    @include bp($point_2) {
+      font-size: 2rem;
+    }
 }
 
 .modalform-bg {
@@ -88,6 +91,9 @@
     height: 100%;
     @include flex-center;
     z-index: 999;
+    @include bp($point_2) {
+      padding: 2rem;
+    }
 
     .form__main {
         max-width: 72.9rem;
@@ -97,6 +103,11 @@
         overflow: hidden;
         color: $dark-light;
         position: relative;
+
+        @include bp($point_2) {
+          max-width: 100%;
+          border-radius: 3rem;
+        }
         a {
             color: inherit;
             font-family: $font_2;
@@ -109,6 +120,10 @@
     padding: 2.5rem 10rem;
     background-color: $yellow;
     border-radius: 8.2rem;
+    @include bp($point_2) {
+      padding: 4rem 1.5rem;
+      border-radius: 3rem;
+    }
     &>p {
         margin-bottom: 2rem;
     }
@@ -119,8 +134,15 @@
     flex-wrap: wrap;
     font-size: 1.8rem;
     margin: -2rem -2rem 3rem 0;
+    @include bp($point_2) {
+          margin: -1rem -1rem 1rem 0;
+          font-size: 1.4rem;
+        }
     &>div {
         padding: 2rem 2rem 0 0;
+        @include bp($point_2) {
+          padding: 1rem 1rem 0 0;
+        }
     }
 
     ul {
@@ -147,6 +169,9 @@
         font-family: $font_2;
         font-weight: 400;
         margin-bottom: 2rem;
+        @include bp($point_2) {
+          font-size: 1.4rem;
+        }
     }
 
     .form {
@@ -164,6 +189,10 @@
     right: 3.6rem;
     color: $white;
     cursor: pointer;
+    @include bp($point_2) {
+      top: 1.5rem;
+      right: 1rem;
+    }
     svg {
         width: 100%;
         height: 100%;

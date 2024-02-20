@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-img">
             <NuxtImg
-                v-if="this.img" 
+                v-if="this.img"
                 :src="this.img.source_url"
                 :alt="this.img.alt_text"
                 loading="lazy"
@@ -17,51 +17,63 @@
 </template>
 
 <script>
-    import sectionTitle from '../ui-kit/section-title';
-    export default {
-        data() {
-            return {
-                img: null,
-            }
-        },
-        components: {
-            sectionTitle
-        },
-        props: ['data'],
-        computed: {
-            trimmedText() {
-                const maxLength = 120; 
-                if(this.data.excerpt.rendered) {
-                    let result = this.data.excerpt.rendered.substring(0, maxLength);
-                    const ellipsisIndex = result.indexOf(' […]');
-                    if (ellipsisIndex !== -1) {
-                        result = result.substring(0, ellipsisIndex);
-                    }
-
-                    if (this.data.excerpt.rendered.length > maxLength) {
-                        result += '…';
-                    }
-        
-                    return result;
-                }
-
-            }
-        },
-        methods: {
-            async getPostImg() {
-                try {
-                    const response = await this.$axios.get(`/api/wp-json/wp/v2/media/${this.data.featured_media}`)
-                    this.img = response.data
-                } catch (error) {
-                    
-                }
-            }
-        },
-        mounted() {
-            this.getPostImg();
+import sectionTitle from '../ui-kit/section-title';
+export default {
+    data() {
+        return {
+            img: null,
         }
+    },
+    components: {
+        sectionTitle
+    },
+    props: ['data'],
+    computed: {
+        trimmedText() {
+            const maxLength = 120;
+            if(this.data.excerpt.rendered) {
+                let result = this.data.excerpt.rendered.substring(0, maxLength);
+                const ellipsisIndex = result.indexOf(' […]');
+                if (ellipsisIndex !== -1) {
+                    result = result.substring(0, ellipsisIndex);
+                }
+
+                if (this.data.excerpt.rendered.length > maxLength) {
+                    result += '…';
+                }
+
+                return result;
+            }
+        }
+    },
+    methods: {
+        async getPostImg() {
+            try {
+                const response = await this.$axios.get(`/api/wp-json/wp/v2/media/${this.data.featured_media}`)
+                this.img = response.data
+                console.log(response.data)
+            } catch (error) {
+
+            }
+        }
+    },
+    watch: {
+        data: {
+            immediate: true,
+            deep: true,
+            handler(newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    this.getPostImg();
+                }
+            }
+        }
+    },
+    mounted() {
+        this.getPostImg();
     }
+}
 </script>
+
 
 <style lang="scss" scoped>
 
