@@ -96,4 +96,8 @@ export default {
     quality: 70,
     dir: 'assets/img'
   },
+
+  router: {
+    middleware: ['close-menu']
+  }
 }

@@ -4,6 +4,7 @@
             <div class="templateHero__main">
                 <div class="templateHero__content">
                     <section-title v-if="content.title" :title="content.title ? content.title.rendered : ''" class="big"/>
+                    <section-title v-if="content.acf" :title="content.acf.procedure_subtitle ? content.acf.procedure_subtitle : ''" class="big-small"/>
                     <div class="templateHero-content__txt" :class="{'small': small}">
                         <div v-if="content.excerpt" v-html="content.excerpt.rendered || content.excerpt"></div>
                     </div>
@@ -51,6 +52,8 @@
 
     .big {
         margin-bottom: 6rem;
+        line-height: 120%;
+        color: #555555;
         @include bp($point_2) {
           margin-bottom: 2rem;
         }
@@ -100,4 +103,9 @@
     }
 }
 
+
+.big-small {
+  margin-bottom: 2rem;
+  line-height: 120%;
+}
 </style>

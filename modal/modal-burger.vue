@@ -7,7 +7,7 @@
             </div>
             <div class="logo">
                 <nuxt-link to="/">
-                    <NuxtImg 
+                    <NuxtImg
                         src="logo.png"
                         alt=""
                         loading="lazy"
@@ -44,7 +44,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 103;
+    z-index: 999;
 }
 
 .burger-bg {

@@ -15,6 +15,9 @@ export const mutations = {
   openPopup(state, modalName) {
     state.modal[modalName] = !state.modal[modalName];
   },
+  closeBurger(state, modalName) {
+    state.modal[modalName] = null;
+  },
   ADD_TO_FAVORITES(state, product) {
     state.favorites.push(product);
   },

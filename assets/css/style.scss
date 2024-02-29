@@ -185,3 +185,11 @@ a {
 .center {
   text-align: center;
 }
+
+.big-small {
+ color: #555555;
+ font-size: 3.2rem;
+ @include bp($point_2) {
+  font-size: 2rem;
+ }
+}

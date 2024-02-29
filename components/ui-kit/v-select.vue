@@ -80,6 +80,12 @@
     min-width: 21rem
 }
 
+.multiselect {
+  @include bp($point_4) {
+      min-width: 100%;
+    }
+}
+
 
 
 .select {
@@ -91,6 +97,10 @@
         font-weight: 400;
         font-family: $font_2;
         margin-bottom: 1.2rem;
+        @include bp($point_4) {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
     }
     :deep(.multiselect__tags) {
         background-color: $white;
@@ -104,6 +114,22 @@
         width: 100%;
         height: 4.5rem;
     }
+}
+
+:deep(.multiselect__tags) {
+  @include bp($point_4) {
+    font-size: 1.2rem;
+  }
+}
+:deep(.multiselect__single) {
+  @include bp($point_4) {
+    font-size: 1.2rem!important;
+  }
+}
+:deep(.multiselect__placeholder) {
+  @include bp($point_4) {
+    font-size: 1.2rem!important;
+  }
 }
 
 :deep(.multiselect__content-wrapper) {

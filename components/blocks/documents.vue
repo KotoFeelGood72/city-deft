@@ -45,8 +45,8 @@
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
     grid-gap: 3rem 5rem;
     @include bp($point_4) {
-      grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
-      grid-gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+      grid-gap: 1rem;
     }
     li {
         a {

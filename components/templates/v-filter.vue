@@ -149,7 +149,10 @@
     border-radius: 1.5rem;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     position: relative;
-    z-index: 11
+    z-index: 11;
+    @include bp($point_4) {
+      padding: 2.5rem
+    }
 }
 
 .filter-top, .filter-medium {
@@ -157,9 +160,15 @@
     flex-wrap: wrap;
     align-items: flex-start;
     margin: -2rem -2rem 2rem 0;
+    @include bp($point_4) {
+      margin: -2rem -2rem 0 0;
+    }
     &>div {
         padding: 2rem 2rem 0 0;
         flex-grow: 1;
+        @include bp($point_4) {
+          padding: 2rem 2rem 0 0;
+        }
     }
 }
 
@@ -176,6 +185,10 @@
     font-family: $font_2;
     margin-bottom: 1.3rem;
     text-align: center;
+    @include bp($point_4) {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
 }
 
 .input-group {
@@ -191,8 +204,16 @@
     font-family: $font_2;
     font-weight: 400;
     font-size: 1.4rem;
+    @include bp($point_4) {
+      margin: -2rem -2rem 0 0;
+      padding-top: 2rem;
+      justify-content: space-between;
+    }
     &>li {
         padding: 4rem 4rem 0 0;
+        @include bp($point_4) {
+          padding: 2rem 2rem 0 0;
+        }
     }
 }
 
@@ -228,5 +249,35 @@
     @include bp($point_4) {
         max-width: 50%;
     }
+}
+
+.filter-medium {
+  @include bp($point_4) {
+      justify-content: space-between;
+    }
+  .filter-col {
+    @include bp($point_4) {
+      max-width: 50%;
+    }
+  }
+}
+
+.filter-top {
+  .filter-col {
+    @include bp($point_4) {
+      max-width: 100%;
+      width: 100%;
+    }
+    &:nth-child(2) {
+      @include bp($point_4) {
+      max-width: 50%;
+    }
+    }
+    &:nth-child(3) {
+      @include bp($point_4) {
+      max-width: 50%;
+    }
+    }
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <nav class="nav">
-        <ul class="nav-list">
+        <ul class="nav-list" v-if="nav">
             <li v-for="(item, i) in nav['header-nav']" :key="'nav-' + i" class="nav_item__parent" @click="toggleSubMenu(i)">
                 <div :class="{'active': activeIndex === i}">
                     <p>{{ item.name }}</p>
@@ -37,7 +37,15 @@
             toggleSubMenu(index) {
                 this.activeIndex = this.activeIndex === index ? false : index;
             },
-        },
+            closeModal(modal) {
+                this.$store.commit('openPopup', modal)
+                console.log('Good')
+            },
+          },
+          beforeRouteLeave(to, from, next) {
+              this.closeModal('burger'); // Вызов closeMenu перед переходом на другой маршрут
+              next(); // Продолжение перехода на другой маршрут
+          }
     }
 </script>
 
@@ -60,7 +68,7 @@
     color: $gray;
     @include flex-center;
     transition: all .3s ease;
-    
+
     &.active {
         transform: translateY(-50%) rotate(180deg);
         color: $orange;
@@ -74,6 +82,7 @@
 
 
 .burger-nav {
+  margin-right: 0;
     a {
         &:hover {
             color: $orange;
@@ -82,8 +91,21 @@
     &>ul {
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
         &>li {
-            overflow: hidden;
+            // overflow: hidden;
+            p {
+              position: relative;
+              padding: 2.4rem 0;
+            &:before {
+              position: absolute;
+              bottom: 0;
+              left: -100%;
+              width: 300%;
+              content: '';
+              border-bottom: .1rem solid rgb(217, 217, 217);
+            }
+            }
             &>div {
 
                 &.active {
@@ -95,18 +117,26 @@
                     color: $orange;
                 }
             }
-            margin-bottom: 2rem;
-            font-size: 1.6rem;
-            font-weight: 600;
+            font-size: 2.4rem;
+            color: #555555;
+            font-weight: 500;
         }
     }
 }
 
 .sub-menu {
-    padding: 1rem;
     li {
-        font-size: 1.4rem;
-        padding: .5rem 0;
+        font-size: 1.6rem;
+        padding: 1.3rem 0;
+        position: relative;
+        &:before {
+              position: absolute;
+              bottom: 0;
+              left: -100%;
+              width: 300%;
+              content: '';
+              border-bottom: .1rem solid rgb(217, 217, 217);
+            }
     }
 }
 
