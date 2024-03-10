@@ -104,10 +104,13 @@ import sectionTitle from '../ui-kit/section-title'
         @include flex-start;
         align-items: flex-start;
         @include bp($point_2) {
-            min-height: 13.5rem;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            // min-height: 13.5rem;
+            box-shadow: 0 .4rem .4rem 0 #00000040;
+            border-radius: 0.7rem;
+            padding: 2rem;
+            // flex-direction: column;
+            // align-items: center;
+            // text-align: center;
         }
         &:not(:last-child) {
             margin-bottom: 7rem;
@@ -144,6 +147,10 @@ import sectionTitle from '../ui-kit/section-title'
             margin-right: 1.2rem;
             @include bp($point_2) {
               margin-bottom: 2rem;
+              width: 2.4rem;
+              min-width: 2.4rem;
+              height: 2.4rem;
+              padding: .3rem;
             }
             &:before {
                 border-radius: 0.5rem;

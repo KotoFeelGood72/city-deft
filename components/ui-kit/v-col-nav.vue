@@ -61,6 +61,7 @@ ul {
             @include flex-start;
             @include bp($point_2) {
                 font-size: 1.4rem;
+                justify-content: center;
             }
 
             .icon {
