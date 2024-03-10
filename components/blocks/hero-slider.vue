@@ -6,9 +6,17 @@
                     <swiper-slide class="swiper-slide" v-for="(item, i) in slides" :key="'slides-' + i">
                         <nuxt-link :to="item.link">
                             <NuxtImg
+                            class="desktop"
                                 v-if="item.img"
                                 :src="item.img"
-                                alt="" 
+                                alt=""
+                                loading="lazy"
+                            />
+                            <NuxtImg
+                              class="mobile"
+                                v-if="item.mobile"
+                                :src="item.mobile"
+                                alt=""
                                 loading="lazy"
                             />
                         </nuxt-link>
@@ -61,6 +69,19 @@
             border-radius: 1rem;
         }
     }
+}
+
+.mobile {
+  display: none;
+  @include bp($point_2) {
+    display: block;
+  }
+}
+.desktop {
+  display: block;
+  @include bp($point_2) {
+    display: none;
+  }
 }
 
 </style>
