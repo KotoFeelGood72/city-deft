@@ -39,7 +39,7 @@
                         </a>
                     </li>
                 </ul>
-                <button>
+                <button @click="scrollToTop">
                   <icons icon="ion:chevron-up" width="24" height="14"/>
                 </button>
               </div>
@@ -53,6 +53,14 @@
     export default {
         components: { vColNav, icons },
         props: ['data'],
+        methods: {
+          scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        },
+        }
     }
 </script>
 

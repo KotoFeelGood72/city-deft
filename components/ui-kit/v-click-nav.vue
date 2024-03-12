@@ -1,27 +1,34 @@
 <template>
-    <nav class="nav">
-        <ul class="nav-list" v-if="nav">
-            <li v-for="(item, i) in nav['header-nav']" :key="'nav-' + i" class="nav_item__parent" @click="toggleSubMenu(i)">
-                <div :class="{'active': activeIndex === i}">
-                    <p>{{ item.name }}</p>
-                    <div class="icon" v-if="item.submenu && item.on_submenu" :class="{'active': activeIndex === i}">
-                        <icons icon="fluent:triangle-down-16-filled"/>
-                    </div>
-                </div>
-                <transition name="translate">
-                    <ul class="sub-menu" v-if="activeIndex === i && item.submenu && item.on_submenu">
-                        <li v-for="(subitem, i) in item.submenu" :key="'nav-' + i" class="nav_item__submenu">
-                            <nuxt-link :to="item.link + subitem.link">{{ subitem.name }}</nuxt-link>
-                        </li>
-                    </ul>
-                </transition>
-            </li>
-        </ul>
-    </nav>
+  <nav class="nav">
+      <ul class="nav-list" v-if="nav">
+          <li v-for="(item, index) in nav['header-nav']" :key="'nav-' + index" class="nav_item__parent" @click="item.submenu && item.on_submenu ? toggleSubMenu(index) : null">
+              <div :class="{'active': activeIndex === index}">
+                  <!-- Условие для проверки наличия подменю -->
+                  <template v-if="item.submenu && item.on_submenu">
+                      <p>{{ item.name }}</p>
+                      <div class="icon" :class="{'active': activeIndex === index}">
+                          <icons icon="fluent:triangle-down-16-filled"/>
+                      </div>
+                  </template>
+                  <!-- Выводим ссылку, если подменю нет -->
+                  <template v-else>
+                      <nuxt-link :to="item.link"><p>{{ item.name }}</p></nuxt-link>
+                  </template>
+              </div>
+              <transition name="translate">
+                  <ul class="sub-menu" v-if="activeIndex === index && item.submenu && item.on_submenu">
+                      <li v-for="(subitem, subIndex) in item.submenu" :key="'sub-nav-' + subIndex" class="nav_item__submenu">
+                          <nuxt-link :to="item.link + subitem.link">{{ subitem.name }}</nuxt-link>
+                      </li>
+                  </ul>
+              </transition>
+          </li>
+      </ul>
+  </nav>
 </template>
 
+
 <script>
-    // import { mapGetters } from 'vuex'
     import icons from '../icons/icons.vue';
     export default {
         components: {

@@ -23,8 +23,9 @@
         font-family: $font_2;
         line-height: 3.2rem;
         @include bp($point_2) {
-          font-size: 1.6rem;
-          line-height: 2.8rem;
+          font-size: 1.4rem;
+          line-height: 2.4rem;
+          padding: 1rem 0;
         }
     }
 
@@ -34,8 +35,9 @@
         color: #555555;
         padding: 2rem;
         @include bp($point_2) {
-          font-size: 2.6rem;
-          padding: 1rem 0;
+          font-size: 2rem;
+          padding: .5rem 0;
+          line-height: 130%;
         }
     }
 
